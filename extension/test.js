@@ -29,16 +29,17 @@ var convertPrice = function(s){
 	var price = parseFloat(s.substring(1, s.length));
 	var newPrice = fx.convert(price, {from: acronymn, to: 'USD'});
 	var newPriceString = '$' + newPrice.toFixed(2);
-	console.log(price);
+	// console.log(price);
 	return newPriceString;
 };
 
 var scan = function(element){
 	$(element).contents().each(function(index){
-		if(this.nodeType == 3){
+		if(this.nodeType === 3){
 			var text = this.textContent;
 			words = text.split(' ');
 			var containsCurrency = false;
+
 			for (var i = 0; i < words.length; i++) {
 				if(isCurrency(words[i])){
 					containsCurrency = true;
@@ -53,12 +54,13 @@ var scan = function(element){
 					words[i] = temp.html();
 				}
 			}
+
 			if(containsCurrency){
 				$(this).parent().append(words.join(' '));
 				$(this).remove();
 			}
 		}
-		else if(this.nodeType == 1){
+		else if(this.nodeType === 1 && this.nodeName.toLowerCase() !== 'iframe'){
 			scan(this);
 		}
 	});
