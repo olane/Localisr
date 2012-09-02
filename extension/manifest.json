@@ -18,5 +18,5 @@
     // "http://api.flickr.com/",
     "tabs", "http://*/*", "https://*/*"
   ],
-  "background": { "scripts": ["jquery.js", "main.js"] }
+  "background": { "scripts": ["loader.js"] }
 }
