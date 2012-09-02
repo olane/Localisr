@@ -11,7 +11,7 @@
   "content_scripts": [
     {
     "matches": ["http://*/*", "https://*/*"],
-    "js": ["jquery.js", "money.js"]
+    "js": ["jquery.js", "money.js", "accounting.js"]
     }
   ],
   "permissions": [

@@ -6,12 +6,47 @@ fx.rates = {
 	"USD" : 1
 };
 
+// Load these from a preferences file
+var targetCurrency = "USD";
+var targetUTCOffset = 0;
+
+var targetSymbol;
+
+switch(targetCurrency){
+	case 'GBP':
+		targetSymbol = '£';
+		break;
+	case 'USD':
+		targetSymbol = '$';
+		break;
+	case 'EUR':
+		targetSymbol = '€';
+		break;
+}
+
+
+var CurrencyTypes = {
+	NOT: 0,
+	NORMAL: 1,
+	THOUSAND: 2,
+	MILLION: 3,
+	BILLION: 4,
+	TRILLION: 5
+};
+
 var isTime = function(s){
 	return s.match(/^[0-9]{1,2}:[0-9]{2}$/);
 };
 
-var isCurrency = function(s){
-	return s.match(/^(£|\$|€){1}[0-9]+\.?([0-9]{2})?$/);
+var getCurrencyType = function(s){
+	if(s.match(/^(£|\$|€){1}[0-9]+\.?([0-9]{2})?$/)){
+		return CurrencyTypes.NORMAL;
+	}
+	if(s.match(/^(£|\$|€){1}[0-9]+\.?([0-9]+)?\s+m(illion)?$/)){
+		return CurrencyTypes.MILLION;
+	}
+
+	return CurrencyTypes.NOT;
 };
 
 var convertPrice = function(s){
@@ -35,9 +70,9 @@ var convertPrice = function(s){
 
 	}
 
-	var price = parseFloat(s.substring(1, s.length));
-	var newPrice = fx.convert(price, {from: acronym, to: 'USD'});
-	var newPriceString = '$' + newPrice.toFixed(2);
+	var price = accounting.unformat(s);
+	var newPrice = fx.convert(price, {from: acronym, to: targetCurrency});
+	var newPriceString = targetSymbol + accounting.toFixed(newPrice, 2);
 	// console.log(price);
 	return newPriceString;
 };
@@ -50,9 +85,12 @@ var scan = function(element){
 			var containsCurrency = false;
 
 			for (var i = 0; i < words.length; i++) {
-				if(isCurrency(words[i])){
+				var currencyType = getCurrencyType(words[i]);
+
+				if(currencyType !== CurrencyTypes.NOT){
 					containsCurrency = true;
 					var newPrice = convertPrice(words[i]);
+
 					if(newPrice !== null){
 						words[i] = newPrice;
 
