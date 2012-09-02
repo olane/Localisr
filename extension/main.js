@@ -1,11 +1,3 @@
-fx.base = "USD";
-fx.rates = {
-	"EUR" : 0.745101,
-	"GBP" : 0.647710,
-	"HKD" : 7.781919,
-	"USD" : 1
-};
-
 // Load these from a preferences file
 var targetCurrency = "USD";
 var targetUTCOffset = 0;
@@ -116,4 +108,18 @@ var scan = function(element){
 	});
 };
 
-scan('body');
+$.ajax({
+	url: "http://openexchangerates.org/api/latest.json",
+	data: {
+		app_id: "73f701531dc640fb8ec624faf83ee842"
+	},
+	success: function(data){
+		console.log(data);
+
+		fx.base = 'USD';
+		fx.rates = data.rates;
+
+		scan('body');
+	}
+
+});
