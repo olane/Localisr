@@ -1,23 +1,5 @@
 (function(){
-
-	// Load these from a preferences file
-	var targetCurrency = "USD";
-	var targetUTCOffset = 0;
-
-	var targetSymbol;
-
-	switch(targetCurrency){
-		case 'GBP':
-			targetSymbol = '£';
-			break;
-		case 'USD':
-			targetSymbol = '$';
-			break;
-		case 'EUR':
-			targetSymbol = '€';
-			break;
-	}
-
+	var targetCurrency, targetTimezone, targetSymbol;
 
 	var CurrencyTypes = {
 		NOT: 0,
@@ -72,6 +54,7 @@
 	};
 
 	var scan = function(element){
+		debugger;
 		$(element).contents().each(function(index){
 			if(this.nodeType === 3){
 				var text = this.textContent;
@@ -110,6 +93,7 @@
 		});
 	};
 
+	// Bit too much nesting here, Deffered this.
 	$.ajax({
 		url: "http://openexchangerates.org/api/latest.json",
 		data: {
@@ -118,12 +102,35 @@
 		success: function(data){
 			console.log(data);
 
-			fx.base = 'USD';
-			fx.rates = data.rates;
+			chrome.extension.sendRequest(
+				{
+					method: 'getLocalStorage',
+					key: 'currency'
+				},
+				function(response){
+					targetCurrency = response.data;
+					console.log(targetCurrency);
+					targetTimezone = 'GMT';
 
-			scan('body');
+					switch(targetCurrency){
+						case 'GBP':
+							targetSymbol = '£';
+							break;
+						case 'USD':
+							targetSymbol = '$';
+							break;
+						case 'EUR':
+							targetSymbol = '€';
+							break;
+					}
+
+					fx.base = 'USD';
+					fx.rates = data.rates;
+
+					scan('body');
+				}
+			);
 		}
-
 	});
 
 }());
