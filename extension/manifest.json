@@ -1,6 +1,6 @@
 {
     "name": "Localisr",
-    "version": "1.0",
+    "version": "0.1.0",
     "manifest_version": 2,
     "description": "In-page conversion of foreign times and prices.",
     "browser_action": {
