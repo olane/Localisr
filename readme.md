@@ -1,1 +1,1 @@
-Chrome extension to replace web page dates with a localised version.
+Chrome extension to automatically localise web page information such as times and currencies.
