@@ -11,23 +11,32 @@ var isTime = function(s){
 };
 
 var isCurrency = function(s){
-	return s.match(/^(£|\$){1}[0-9]+(\.[0-9]{2})?$/);
+	return s.match(/^(£|\$|€){1}[0-9]+\.?([0-9]{2})?$/);
 };
 
 var convertPrice = function(s){
 	var type = s[0];
-	var acronymn;
+	var acronym;
+	// debugger;
 	switch(type){
 		case '£':
-			acronymn = 'GBP';
+			acronym = 'GBP';
 			break;
 		case '$':
-			acronymn = 'USD';
+			acronym = 'USD';
 			break;
+		case '€':
+			acronym = 'EUR';
+			break;
+
+		default:
+			console.log('unsupported currency');
+			return null;
+
 	}
 
 	var price = parseFloat(s.substring(1, s.length));
-	var newPrice = fx.convert(price, {from: acronymn, to: 'USD'});
+	var newPrice = fx.convert(price, {from: acronym, to: 'USD'});
 	var newPriceString = '$' + newPrice.toFixed(2);
 	// console.log(price);
 	return newPriceString;
@@ -43,15 +52,18 @@ var scan = function(element){
 			for (var i = 0; i < words.length; i++) {
 				if(isCurrency(words[i])){
 					containsCurrency = true;
-					words[i] = convertPrice(words[i]);
+					var newPrice = convertPrice(words[i]);
+					if(newPrice !== null){
+						words[i] = newPrice;
 
-					var temp = $('<div>');
-					var wrapper = $('<span>')
-						.css({color: 'red'})
-						.text(words[i])
-						.addClass('converted-price');
-					temp.html(wrapper);
-					words[i] = temp.html();
+						var temp = $('<div>');
+						var wrapper = $('<span>')
+							.css({color: 'red'})
+							.text(words[i])
+							.addClass('converted-price');
+						temp.html(wrapper);
+						words[i] = temp.html();
+					}
 				}
 			}
 
