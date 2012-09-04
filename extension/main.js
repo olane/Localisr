@@ -111,61 +111,67 @@
 		});
 	};
 
-	var init = function(response){
+	var complete = [false, false];
 
+	var init = function(){
+		// debugger;
+		for (var i = 0; i < complete.length; i++) {
+			if(!complete[i]){ return; }
+		}
+
+		switch(targetCurrency){
+			case 'GBP':
+				targetSymbol = '£';
+				break;
+			case 'USD':
+				targetSymbol = '$';
+				break;
+			case 'EUR':
+				targetSymbol = '€';
+				break;
+		}
+
+		targetTimezone = 'GMT';
+		fx.base = 'USD';
+
+		scan('body');
+
+		$('.converted-price')
+			.on('mouseenter', function(){
+				$(this).find('.converted-price-hover').show();
+			})
+			.on('mouseout', function(){
+				$(this).find('.converted-price-hover').hide();
+			});
+
+		$('.converted-price-hover').each(function(){
+			var t = $(this);
+			t.css('bottom', -(t.height() + 10));
+		});
 	};
 
-	// Bit too much nesting here, Deffered this.
-	$.ajax({
-		url: "http://openexchangerates.org/api/latest.json",
-		data: {
-			app_id: "73f701531dc640fb8ec624faf83ee842"
+	chrome.extension.sendMessage(
+		{
+			method: 'getExchangeRates'
 		},
-		success: function(data){
-			console.log(data);
-
-			chrome.extension.sendRequest(
-				{
-					method: 'getLocalStorage',
-					key: 'currency'
-				},
-				function(response){
-					targetCurrency = response.data;
-					console.log(targetCurrency);
-					targetTimezone = 'GMT';
-
-					switch(targetCurrency){
-						case 'GBP':
-							targetSymbol = '£';
-							break;
-						case 'USD':
-							targetSymbol = '$';
-							break;
-						case 'EUR':
-							targetSymbol = '€';
-							break;
-					}
-
-					fx.base = 'USD';
-					fx.rates = data.rates;
-
-					scan('body');
-
-					$('.converted-price')
-						.on('mouseenter', function(){
-							$(this).find('.converted-price-hover').show();
-						})
-						.on('mouseout', function(){
-							$(this).find('.converted-price-hover').hide();
-						});
-
-					$('.converted-price-hover').each(function(){
-						var t = $(this);
-						t.css('bottom', -(t.height() + 10));
-					});
-				}
-			);
+		function(exchangeRates){
+			// debugger;
+			fx.rates = exchangeRates.data.rates;
+			complete[0] = true;
+			init();
 		}
-	});
+	);
+	chrome.extension.sendMessage(
+		{
+			method: 'getLocalStorage',
+			key: 'currency'
+		},
+		function(response){
+			// debugger;
+			targetCurrency = response.data;
+			complete[1] = true;
+			init();
+		}
+	);
 
 }());
