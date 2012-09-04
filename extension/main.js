@@ -53,8 +53,18 @@
 		return newPriceString;
 	};
 
+	var hoverStyle = {
+		position: 'absolute',
+		left: 0,
+		background: '#eee',
+		border: '1px solid #222',
+		padding: '5px',
+		display: 'none',
+		zIndex: 10
+	};
+
 	var scan = function(element){
-		debugger;
+		// debugger;
 		$(element).contents().each(function(index){
 			if(this.nodeType === 3){
 				var text = this.textContent;
@@ -66,16 +76,24 @@
 
 					if(currencyType !== CurrencyTypes.NOT){
 						containsCurrency = true;
-						var newPrice = convertPrice(words[i]);
+						var oldPrice = words[i];
+						var newPrice = convertPrice(oldPrice);
 
 						if(newPrice !== null){
-							words[i] = newPrice;
 
 							var temp = $('<div>');
+
+							var hover = $('<span>')
+								.addClass('converted-price-hover')
+								.css(hoverStyle)
+								.text("Original price: " + oldPrice);
+
 							var wrapper = $('<span>')
-								.css({color: 'red'})
-								.text(words[i])
-								.addClass('converted-price');
+								.text(newPrice)
+								.addClass('converted-price')
+								.css('position', 'relative')
+								.append(hover);
+
 							temp.html(wrapper);
 							words[i] = temp.html();
 						}
@@ -91,6 +109,10 @@
 				scan(this);
 			}
 		});
+	};
+
+	var init = function(response){
+
 	};
 
 	// Bit too much nesting here, Deffered this.
@@ -128,6 +150,19 @@
 					fx.rates = data.rates;
 
 					scan('body');
+
+					$('.converted-price')
+						.on('mouseenter', function(){
+							$(this).find('.converted-price-hover').show();
+						})
+						.on('mouseout', function(){
+							$(this).find('.converted-price-hover').hide();
+						});
+
+					$('.converted-price-hover').each(function(){
+						var t = $(this);
+						t.css('bottom', -(t.height() + 10));
+					});
 				}
 			);
 		}
