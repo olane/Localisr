@@ -15,10 +15,10 @@
 	};
 
 	var getCurrencyType = function(s){
-		if(s.match(/^(£|\$|€){1}[0-9]+\.?([0-9]{2})?$/)){
+		if(s.match(/^(£|\$|€|¥){1}[0-9]+\.?([0-9]{2})?$/)){
 			return CurrencyTypes.NORMAL;
 		}
-		if(s.match(/^(£|\$|€){1}[0-9]+\.?([0-9]+)?\s+m(illion)?$/)){
+		if(s.match(/^(£|\$|€|¥){1}[0-9]+\.?([0-9]+)?\s+m(illion)?$/)){
 			return CurrencyTypes.MILLION;
 		}
 
@@ -38,6 +38,9 @@
 				break;
 			case '€':
 				acronym = 'EUR';
+				break;
+			case '¥':
+				acronym = 'JPY';
 				break;
 
 			default:
