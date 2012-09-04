@@ -10,6 +10,27 @@
 		TRILLION: 5
 	};
 
+	var invert = function(obj){
+		var new_obj = {};
+
+		for (var prop in obj){
+			if(obj.hasOwnProperty(prop)){
+				new_obj[obj[prop]] = prop;
+			}
+		}
+
+		return new_obj;
+	};
+
+	var symbolMap = {
+		'£': 'GBP',
+		'$': 'USD',
+		'€': 'EUR',
+		'¥': 'JPY'
+	};
+
+	var acronymMap = invert(symbolMap);
+
 	var isTime = function(s){
 		return s.match(/^[0-9]{1,2}:[0-9]{2}$/);
 	};
@@ -26,27 +47,11 @@
 	};
 
 	var convertPrice = function(s){
-		var type = s[0];
-		var acronym;
-		// debugger;
-		switch(type){
-			case '£':
-				acronym = 'GBP';
-				break;
-			case '$':
-				acronym = 'USD';
-				break;
-			case '€':
-				acronym = 'EUR';
-				break;
-			case '¥':
-				acronym = 'JPY';
-				break;
-
-			default:
-				console.log('unsupported currency');
-				return null;
-
+		var symbol = s[0];
+		var acronym = symbolMap[symbol];
+		if(acronym === undefined){
+			console.log('unsupported currency');
+			return null;
 		}
 
 		var price = accounting.unformat(s);
@@ -122,18 +127,7 @@
 			if(!complete[i]){ return; }
 		}
 
-		switch(targetCurrency){
-			case 'GBP':
-				targetSymbol = '£';
-				break;
-			case 'USD':
-				targetSymbol = '$';
-				break;
-			case 'EUR':
-				targetSymbol = '€';
-				break;
-		}
-
+		targetSymbol = acronymMap[targetCurrency];
 		targetTimezone = 'GMT';
 		fx.base = 'USD';
 
