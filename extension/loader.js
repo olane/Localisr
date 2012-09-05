@@ -1,4 +1,5 @@
 var cacheAge = 10; // seconds
+var savedBody;
 
 var loadExchangeRates = function(){
     $.ajax({
@@ -37,6 +38,14 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
             }
             sendResponse({data: JSON.parse(localStorage['exchangerates'])});
 
+            break;
+
+        case 'saveBody':
+            savedBody = request.body;
+            break;
+
+        case 'loadBody':
+            sendResponse(savedBody);
             break;
 
         default:

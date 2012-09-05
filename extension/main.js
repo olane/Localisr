@@ -144,7 +144,7 @@
 						var newPrice = convertPrice(oldPrice, acronym);
 
 						// Replace the old price string with the new one
-						var html = text.replace(regex, generateCurrencyReplacement(oldPrice, newPrice));
+						var html = text.replace(regex, targetSymbol + generateCurrencyReplacement(oldPrice, newPrice));
 						$(this).after($('<span>').html(html)).remove();
 					}
 				}
@@ -156,7 +156,7 @@
 		});
 	};
 
-	var complete = [false, false];
+	var complete;
 
 	var init = function(){
 		// debugger;
@@ -184,28 +184,39 @@
 		});
 	};
 
-	chrome.extension.sendMessage(
-		{
-			method: 'getExchangeRates'
-		},
-		function(exchangeRates){
-			// debugger;
-			fx.rates = exchangeRates.data.rates;
-			complete[0] = true;
-			init();
-		}
-	);
-	chrome.extension.sendMessage(
-		{
-			method: 'getLocalStorage',
-			key: 'currency'
-		},
-		function(response){
-			// debugger;
-			targetCurrency = response.data;
-			complete[1] = true;
-			init();
-		}
-	);
+	if(!window.isConverted){
+		window.isConverted = true;
+		complete = [false, false];
+		window.bodyBackup = $('body').clone();
+
+		chrome.extension.sendMessage(
+			{
+				method: 'getExchangeRates'
+			},
+			function(exchangeRates){
+				// debugger;
+				fx.rates = exchangeRates.data.rates;
+				complete[0] = true;
+				init();
+			}
+		);
+		chrome.extension.sendMessage(
+			{
+				method: 'getLocalStorage',
+				key: 'currency'
+			},
+			function(response){
+				// debugger;
+				targetCurrency = response.data;
+				complete[1] = true;
+				init();
+			}
+		);
+	}
+	else {
+		window.isConverted = false;
+
+		$('body').replaceWith(window.bodyBackup);
+	}
 
 }());
