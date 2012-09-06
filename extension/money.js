@@ -159,7 +159,7 @@
 		})(root.fx);
 
 		// Declare `fx` on the root (global/window) object:
-		root['fx'] = fx;
+		root['money'] = fx;
 	}
 
 	// Root will be `window` in browser or `global` on the server:

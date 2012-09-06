@@ -73,7 +73,7 @@
 		}
 
 		var price = accounting.unformat(string);
-		var newPrice = fx.convert(price, {from: acronym, to: targetCurrency});
+		var newPrice = money.convert(price, {from: acronym, to: targetCurrency});
 		var newPriceString = accounting.formatMoney(newPrice, targetSymbol, 2);
 
 		return newPriceString;
@@ -157,7 +157,7 @@
 
 		targetSymbol = acronymMap[targetCurrency];
 		targetTimezone = 'GMT';
-		fx.base = 'USD';
+		money.base = 'USD';
 
 		scan('body');
 
@@ -193,7 +193,7 @@
 			},
 			function(exchangeRates){
 				// debugger;
-				fx.rates = exchangeRates.data.rates;
+				money.rates = exchangeRates.data.rates;
 				complete[0] = true;
 				init();
 			}
