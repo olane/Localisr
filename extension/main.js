@@ -92,35 +92,28 @@
 				var containsCurrency = false;
 				// Loop through both symbols and acronyms
 				for(var i = 0; i < currencies.length; i++){
-					for(var j = 0; j < currencies[i].length; j++){
-						var type = currencies[i][j];
+					// Characters used for both matching and replacing
+					var types = "(" + currencies[i].join('|') + "){1}";
+					var commonString = types + "\\s*" + basePriceRegex;
 
-						// Create an escaped version of the string if it's a regex metacharacter
-						var escapedType = type;
-						if(type === '$'){
-							escapedType = '\\$';
-						}
+					// Regex used for determining whether there is a price in a string
+					var matchRegex = new RegExp("(^|\\s)+" + commonString);
+					var match = text.match(matchRegex);
 
-						// Characters used for both matching and replacing
-						var commonString = escapedType + "\\s*" + basePriceRegex;
+					if(match){
+						containsCurrency = true;
 
-						// Regex used for determining whether there is a price in a string
-						var matchRegex = new RegExp("(^|\\s)+" + commonString);
-						var match = text.match(matchRegex);
+						// Regex for replacing the price in the string
+						var replaceRegex = new RegExp(commonString);
+						// Extract a string containing just the numerical price from the text
+						var oldPrice = match[0];
 
-						if(match){
-							containsCurrency = true;
+						var type = text.match(types)[0];
+						// Convert them to the user's currency
+						var newPrice = targetSymbol + convertPrice(oldPrice, type);
 
-							// Regex for replacing the price in the string
-							var replaceRegex = new RegExp(escapedType + "\\s*" + basePriceRegex);
-							// Extract a string containing just the numerical price from the text
-							var oldPrice = match[0];
-							// Convert them to the user's currency
-							var newPrice = targetSymbol + convertPrice(oldPrice, type);
-
-							// Replace the old price string with the new one
-							text = text.replace(replaceRegex, generateCurrencyReplacement(oldPrice, newPrice));
-						}
+						// Replace the old price string with the new one
+						text = text.replace(replaceRegex, generateCurrencyReplacement(oldPrice, newPrice));
 					}
 				}
 
