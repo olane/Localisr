@@ -110,6 +110,7 @@
 			if(this.nodeType === 3){
 				// The node is a text node so it can be parsed for currencies
 				var text = this.textContent;
+				var oldText = text;
 
 				var containsCurrency = false;
 				var matches = text.match(matchRegex);
@@ -137,12 +138,33 @@
 
 				// If any replacements have been made, replace the text node with a span element containing the converted text
 				if(containsCurrency){
-					$(this).replaceWith($('<span>').html(text));
+					var replacement = $('<span>');
+					replacement.attr('data-original-text', oldText);
+					replacement.html(text);
+					$(this).replaceWith(replacement);
 				}
 			}
 			else if(this.nodeType === 1 && this.nodeName.toLowerCase() !== 'iframe'){
 				// The node is a normal element so recursively scan it for more text nodes
 				scan(this);
+			}
+		});
+	};
+
+	var restore = function(element){
+		$(element).contents().each(function(index){
+			if(this.nodeType === 1 && this.nodeName.toLowerCase() !== 'iframe'){
+				if(this.nodeName.toLowerCase() === 'span'){
+					var t = $(this);
+					var originalText = t.attr('data-original-text');
+					if(originalText){
+						var replacement = document.createTextNode(originalText);
+						$(this).replaceWith(replacement);
+						return;
+					}
+				}
+
+				restore(this);
 			}
 		});
 	};
@@ -175,16 +197,14 @@
 		});
 	};
 
-	// If the page is in a converted state then restore the original from the backup
+	// If the page is in a converted state then restore the original
 	if(Localisr.isConverted){
 		Localisr.isConverted = false;
-
-		$('body').replaceWith(Localisr.backup);
+		restore('body');
 	}
 	// Otherwise convert it
 	else {
 		Localisr.isConverted = true;
-		Localisr.backup = $('body').clone();
 		complete = [false, false];
 
 		chrome.extension.sendMessage(

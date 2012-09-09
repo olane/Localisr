@@ -16,11 +16,11 @@
         {
             "matches": ["http://*/*", "https://*/*"],
             "js": ["jquery.js", "money.js", "accounting.js"]
-        },
-        {
-            "matches": ["http://localhost/*"],
-            "js": ["jquery.js", "money.js", "accounting.js", "main.js"]
         }
+        // {
+        //     "matches": ["http://localhost/*"],
+        //     "js": ["main.js"]
+        // }
     ],
     "permissions": [
         // "http://api.flickr.com/",
