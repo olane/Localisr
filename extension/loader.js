@@ -1,4 +1,4 @@
-var cacheAge = 10; // seconds
+var cacheAge = 60 * 60; // seconds
 
 var loadExchangeRates = function(){
     $.ajax({

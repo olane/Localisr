@@ -16,6 +16,10 @@
         {
             "matches": ["http://*/*", "https://*/*"],
             "js": ["jquery.js", "money.js", "accounting.js"]
+        },
+        {
+            "matches": ["http://localhost/*"],
+            "js": ["jquery.js", "money.js", "accounting.js", "main.js"]
         }
     ],
     "permissions": [
