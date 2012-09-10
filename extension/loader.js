@@ -39,6 +39,21 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
 
             break;
 
+        case 'getTimezones':
+            var d;
+            $.ajax({
+                url: "zones.json",
+                async: false,
+                dataType: 'json',
+                success: function(data){
+                    console.log(data);
+                    d = data;
+                }
+            });
+            sendResponse(d);
+
+            break;
+
         default:
             sendResponse({});
             break;
