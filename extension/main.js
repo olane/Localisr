@@ -2,7 +2,31 @@
 	// Set up a global object to store persistent properties
 	window.Localisr = window.Localisr || {};
 
-    var timezones = ['A', 'ADT', 'ADT', 'AFT', 'AKDT', 'AKST', 'ALMT', 'AMST', 'AMST', 'AMT', 'AMT', 'ANAST', 'ANAT', 'AQTT', 'ART', 'AST', 'AST', 'AST', 'AST', 'AZOST', 'AZOT', 'AZST', 'AZT', 'B', 'BNT', 'BOT', 'BRST', 'BRT', 'BST', 'BST', 'BTT', 'C', 'CAST', 'CAT', 'CCT', 'CDT', 'CDT', 'CDT', 'CEST', 'CET', 'CET', 'CHADT', 'CHAST', 'CKT', 'CLST', 'CLT', 'COT', 'CST', 'CST', 'CST', 'CST', 'CST', 'CVT', 'CXT', 'ChST', 'D', 'DAVT', 'E', 'EASST', 'EAST', 'EAT', 'EAT', 'ECT', 'EDT', 'EDT', 'EDT', 'EDT', 'EEST', 'EEST', 'EEST', 'EET', 'EET', 'EET', 'EGST', 'EGT', 'EST', 'EST', 'EST', 'EST', 'ET', 'ET', 'ET', 'F', 'FJST', 'FJT', 'FKST', 'FKT', 'FNT', 'G', 'GALT', 'GAMT', 'GET', 'GFT', 'GILT', 'GMT', 'GMT', 'GST', 'GYT', 'H', 'HAA', 'HAA', 'HAC', 'HADT', 'HAE', 'HAE', 'HAP', 'HAR', 'HAST', 'HAT', 'HAY', 'HKT', 'HLV', 'HNA', 'HNA', 'HNA', 'HNC', 'HNC', 'HNE', 'HNE', 'HNE', 'HNP', 'HNR', 'HNT', 'HNY', 'HOVT', 'I', 'ICT', 'IDT', 'IOT', 'IRDT', 'IRKST', 'IRKT', 'IRST', 'IST', 'IST', 'IST', 'JST', 'K', 'KGT', 'KRAST', 'KRAT', 'KST', 'KUYT', 'L', 'LHDT', 'LHST', 'LINT', 'M', 'MAGST', 'MAGT', 'MART', 'MAWT', 'MDT', 'MESZ', 'MEZ', 'MHT', 'MMT', 'MSD', 'MSK', 'MST', 'MUT', 'MVT', 'MYT', 'N', 'NCT', 'NDT', 'NFT', 'NOVST', 'NOVT', 'NPT', 'NST', 'NUT', 'NZDT', 'NZDT', 'NZST', 'NZST', 'O', 'OMSST', 'OMST', 'P', 'PDT', 'PET', 'PETST', 'PETT', 'PGT', 'PHOT', 'PHT', 'PKT', 'PMDT', 'PMST', 'PONT', 'PST', 'PST', 'PT', 'PWT', 'PYST', 'PYT', 'Q', 'R', 'RET', 'S', 'SAMT', 'SAST', 'SBT', 'SCT', 'SGT', 'SRT', 'SST', 'T', 'TAHT', 'TFT', 'TJT', 'TKT', 'TLT', 'TMT', 'TVT', 'U', 'ULAT', 'UYST', 'UYT', 'UZT', 'V', 'VET', 'VLAST', 'VLAT', 'VUT', 'W', 'WAST', 'WAT', 'WDT', 'WEST', 'WEST', 'WESZ', 'WET', 'WET', 'WEZ', 'WFT', 'WGST', 'WGT', 'WIB', 'WIT', 'WITA', 'WST', 'WST', 'WST', 'WT', 'X', 'Y', 'YAKST', 'YAKT', 'YAPT', 'YEKST', 'YEKT', 'Z'];
+    var timezones = [
+		'ADT', 'AFT', 'AKDT', 'AKST', 'ALMT', 'AMST', 'AMST', 'AMT', 'ANAST', 'ANAT', 'AQTT', 'ART', 'AST', 'AZOST', 'AZOT', 'AZST', 'AZT',
+		'BNT', 'BOT', 'BRST', 'BRT', 'BST', 'BTT',
+		'CAST', 'CAT', 'CCT', 'CDT', 'CEST', 'CET', 'CET', 'CHADT', 'CHAST', 'CKT', 'CLST', 'CLT', 'COT', 'CST', 'CVT', 'CXT', 'ChST',
+		'DAVT',
+		'EASST', 'EAST', 'EAT', 'EAT', 'ECT', 'EDT', 'EDT', 'EDT', 'EDT', 'EEST', 'EEST', 'EEST', 'EET', 'EET', 'EET', 'EGST', 'EGT', 'EST', 'EST', 'EST', 'EST', 'ET', 'ET', 'ET',
+		'FJST', 'FJT', 'FKST', 'FKT', 'FNT',
+		'GALT', 'GAMT', 'GET', 'GFT', 'GILT', 'GMT', 'GMT', 'GST', 'GYT',
+		'HAA', 'HAC', 'HADT', 'HAE', 'HAP', 'HAR', 'HAST', 'HAT', 'HAY', 'HKT', 'HLV', 'HNA', 'HNA', 'HNA', 'HNC', 'HNC', 'HNE', 'HNE', 'HNE', 'HNP', 'HNR', 'HNT', 'HNY', 'HOVT',
+		'ICT', 'IDT', 'IOT', 'IRDT', 'IRKST', 'IRKT', 'IRST', 'IST',
+		'JST',
+		'KGT', 'KRAST', 'KRAT', 'KST', 'KUYT',
+		'LHDT', 'LHST', 'LINT',
+		'MAGST', 'MAGT', 'MART', 'MAWT', 'MDT', 'MESZ', 'MEZ', 'MHT', 'MMT', 'MSD', 'MSK', 'MST', 'MUT', 'MVT', 'MYT',
+		'NCT', 'NDT', 'NFT', 'NOVST', 'NOVT', 'NPT', 'NST', 'NUT', 'NZDT', 'NZDT', 'NZST', 'NZST',
+		'OMSST', 'OMST',
+		'PDT', 'PET', 'PETST', 'PETT', 'PGT', 'PHOT', 'PHT', 'PKT', 'PMDT', 'PMST', 'PONT', 'PST', 'PT', 'PWT', 'PYST', 'PYT',
+		'RET',
+		'SAMT', 'SAST', 'SBT', 'SCT', 'SGT', 'SRT', 'SST',
+		'TAHT', 'TFT', 'TJT', 'TKT', 'TLT', 'TMT', 'TVT',
+		'ULAT', 'UYST', 'UYT', 'UZT',
+		'VET', 'VLAST', 'VLAT', 'VUT',
+		'WAST', 'WAT', 'WDT', 'WEST', 'WEST', 'WESZ', 'WET', 'WEZ', 'WFT', 'WGST', 'WGT', 'WIB', 'WIT', 'WITA', 'WST', 'WT',
+		'YAKST', 'YAKT', 'YAPT', 'YEKST', 'YEKT'
+	];
 
 	var acronyms = ['AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 'BAM', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', 'BSD', 'BTN', 'BWP', 'BYR', 'BZD', 'CAD', 'CDF', 'CHF', 'CLF', 'CLP', 'CNY', 'COP', 'CRC', 'CUP', 'CVE', 'CZK', 'DJF', 'DKK', 'DOP', 'DZD', 'EGP', 'ETB', 'EUR', 'FJD', 'FKP', 'GBP', 'GEL', 'GHS', 'GIP', 'GMD', 'GNF', 'GTQ', 'GYD', 'HKD', 'HNL', 'HRK', 'HTG', 'HUF', 'IDR', 'ILS', 'INR', 'IQD', 'IRR', 'ISK', 'JMD', 'JOD', 'JPY', 'KES', 'KGS', 'KHR', 'KMF', 'KPW', 'KRW', 'KWD', 'KZT', 'LAK', 'LBP', 'LKR', 'LRD', 'LSL', 'LTL', 'LVL', 'LYD', 'MAD', 'MDL', 'MGA', 'MKD', 'MMK', 'MNT', 'MOP', 'MRO', 'MUR', 'MVR', 'MWK', 'MXN', 'MYR', 'MZN', 'NAD', 'NGN', 'NIO', 'NOK', 'NPR', 'NZD', 'OMR', 'PAB', 'PEN', 'PGK', 'PHP', 'PKR', 'PLN', 'PYG', 'QAR', 'RON', 'RSD', 'RUB', 'RWF', 'SAR', 'SBD', 'SCR', 'SDG', 'SEK', 'SGD', 'SHP', 'SLL', 'SOS', 'SRD', 'STD', 'SVC', 'SYP', 'SZL', 'THB', 'TJS', 'TMT', 'TND', 'TOP', 'TRY', 'TTD', 'TWD', 'TZS', 'UAH', 'UGX', 'USD', 'UYU', 'UZS', 'VEF', 'VND', 'VUV', 'WST', 'XAF', 'XCD', 'XDR', 'XOF', 'XPF', 'YER', 'ZAR', 'ZMK', 'ZWL'];
 	var symbols = ['£', '€', '¥', '$'];
@@ -25,16 +49,20 @@
 	var types = "(" + currencies.join('|') + "){1}";
 	var commonString = types + "\\s*" + basePriceRegex;
 
+	var start = "(^|\\s)+";
+	var end = "($|\\s)+";
+
 	// Regex used for determining whether there is a price in a string
-	var matchRegex = new RegExp("(^|\\s)+" + commonString, 'g');
+	var matchRegex = new RegExp(start + commonString + end, 'g');
 	// Regex for replacing the price in the string
 	var replaceRegex = new RegExp(commonString, 'g');
 	var typeRegex = new RegExp(types, 'g');
 
 	var timezonesString = '(' + timezones.join('|') + '){1}';
+	var timeString = "[0-9]{1,2}\\s*:\\s*[0-9]{2}\\s*" + timezonesString;
 	var timezonesRegex = new RegExp(timezonesString, 'g');
-	var timeRegex = new RegExp("[0-9]{2}:[0-9]{2}\\s*" + timezonesString + '(\\s|$)', 'g');
-
+	var timeRegex = new RegExp(start + timeString + end, 'g');
+	var timeReplaceRegex = new RegExp(timeString, 'g');
 
 	var targetCurrency, targetTimezone, targetSymbol;
 
@@ -165,20 +193,15 @@
 				var timeMatches = text.match(timeRegex);
 
 				if(timeMatches){
-					// replacements = text.match(replaceRegex);
-					debugger;
+					replacements = text.match(timeReplaceRegex);
+					// debugger;
 					for(i = 0; i < timeMatches.length; i++){
 						if(!timeMatches[i]){ break; }
 						containsTimes = true;
 
-						// Extract a string containing just the numerical price from the text
 						var oldTime = timeMatches[i];
-
-						// Convert them to the user's currency
 						var newTime = convertTime(oldTime, 1);
-
-						// Replace the old price string with the new one
-						text = text.replace(oldTime, generateReplacement(oldTime, newTime, 'time'));
+						text = text.replace(replacements[i], generateReplacement(oldTime, newTime, 'time'));
 					}
 				}
 
