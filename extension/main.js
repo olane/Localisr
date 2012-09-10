@@ -225,7 +225,7 @@
 			},
 			function(response){
 				// debugger;
-				targetCurrency = response.data;
+				targetCurrency = response.data || 'AED';
 				complete[1] = true;
 				init();
 			}
