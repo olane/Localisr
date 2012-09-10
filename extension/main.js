@@ -177,8 +177,8 @@
 			if(!complete[i]){ return; }
 		}
 
-		targetSymbol = acronymMap[targetCurrency];
-		targetTimezone = 'GMT';
+		targetSymbol = acronymMap[targetCurrency] || targetCurrency + " ";
+		// targetTimezone = 'GMT';
 		money.base = 'USD';
 
 		scan('body');

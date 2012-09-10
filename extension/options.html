@@ -3,23 +3,76 @@
 
 <head>
     <title>Localisr Options</title>
+    <style>
+        *{
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        body{
+            background: #efefef;
+            color: #222;
+        }
+
+        h1{
+            font-size: 48px;
+            text-align: center;
+            text-shadow: 0 1px 0 white;
+            margin: 50px 0 20px;
+        }
+
+        #status{
+            position: absolute;
+            background: white;
+            padding: 10px;
+            display: none;
+            font-size: 20px;
+            top: 5px;
+        }
+
+        form{
+            background: #ddd;
+            width: 500px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        form *{
+            font-size: 16px;
+        }
+
+        #save{
+            cursor: pointer;
+            margin: 0 auto;
+            font-size: 20px;
+            background: #0095DB;
+            padding: 5px;
+            width: 100px;
+            text-align: center;
+            -webkit-transition: 0.1s all;
+        }
+
+        #save:hover{
+            background: #00a9f9;
+        }
+
+    </style>
 </head>
 
 <body>
     <h1>Localisr Options</h1>
     <div id="status"></div>
-    Time Zone
-    <select id="timezone"></select>
 
-    <br>
+    <form>
+        <!-- Time Zone
+        <select id="timezone"></select>
 
-    Currency
-    <select id="currency"></select>
+        -->
 
-    <br>
+        Currency:
+        <select id="currency"></select><br>
 
-    <input type="button" id="save" value="Save">
-
+        <div id="save">Save</div>
+    </form>
     <script src="jquery.js"></script>
     <script src="options.js"></script>
 </body>
