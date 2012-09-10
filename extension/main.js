@@ -31,6 +31,10 @@
 	var replaceRegex = new RegExp(commonString, 'g');
 	var typeRegex = new RegExp(types, 'g');
 
+	var timezonesString = '(' + timezones.join('|') + '){1}';
+	var timezonesRegex = new RegExp(timezonesString, 'g');
+	var timeRegex = new RegExp("[0-9]{2}:[0-9]{2}\\s*" + timezonesString + '(\\s|$)', 'g');
+
 
 	var targetCurrency, targetTimezone, targetSymbol;
 
@@ -55,10 +59,6 @@
 
 	var acronymMap = invert(symbolMap);
 
-	var isTime = function(s){
-		return s.match(/^[0-9]{1,2}:[0-9]{2}$/);
-	};
-
 	var convertPrice = function(string, type){
 		var acronym;
 		// Convert symbol to acronym if that was what was passed
@@ -79,6 +79,29 @@
 		return newPriceString;
 	};
 
+	var convertTime = function(string, offset, seperator){
+		var hours, minutes;
+		// debugger;
+		seperator = seperator || offset;
+		var seperatorPosition = string.indexOf(':');
+		if(seperatorPosition === -1){
+			hours = parseInt(string, 10);
+			minutes = 0;
+		}
+		else {
+			hours = parseInt(string.substring(0, seperatorPosition), 10);
+			minutes = parseInt(string.substring(seperatorPosition + 1, string.length), 10);
+		}
+
+		hours += offset;
+
+		var newTime = new Date();
+		newTime.setHours(hours);
+		newTime.setMinutes(minutes);
+
+		return newTime.toTimeString().substring(0, 5) + ' ' + targetTimezone;
+	};
+
 	var hoverStyle = {
 		position: 'absolute',
 		left: 0,
@@ -89,15 +112,15 @@
 		zIndex: 10
 	};
 
-	var generateCurrencyReplacement = function(oldPrice, newPrice){
+	var generateReplacement = function(oldValue, newValue, type){
 		var hover = $('<span>')
-			.addClass('converted-price-hover')
+			.addClass('converted-value-hover')
 			.css(hoverStyle)
-			.text("Original price: " + oldPrice);
+			.text('Original ' + type + ': ' + oldValue);
 
 		var wrapper = $('<span>')
-			.text(newPrice)
-			.addClass('converted-price')
+			.text(newValue)
+			.addClass('converted-value')
 			.css('position', 'relative')
 			.append(hover);
 
@@ -116,10 +139,12 @@
 				var matches = text.match(matchRegex);
 				var typeMatches = text.match(typeRegex);
 
-				if(matches && typeMatches){
-					var replacements = text.match(replaceRegex);
+				var replacements, i;
 
-					for(var i = 0; i < matches.length; i++){
+				if(matches && typeMatches){
+					replacements = text.match(replaceRegex);
+
+					for(i = 0; i < matches.length; i++){
 						// debugger;
 						if(!(matches[i] && typeMatches[i])){ break; }
 						containsCurrency = true;
@@ -132,12 +157,33 @@
 						var newPrice = convertPrice(oldPrice, type);
 
 						// Replace the old price string with the new one
-						text = text.replace(replacements[i], generateCurrencyReplacement(oldPrice, newPrice));
+						text = text.replace(replacements[i], generateReplacement(oldPrice, newPrice, 'price'));
+					}
+				}
+
+				var containsTimes = false;
+				var timeMatches = text.match(timeRegex);
+
+				if(timeMatches){
+					// replacements = text.match(replaceRegex);
+					debugger;
+					for(i = 0; i < timeMatches.length; i++){
+						if(!timeMatches[i]){ break; }
+						containsTimes = true;
+
+						// Extract a string containing just the numerical price from the text
+						var oldTime = timeMatches[i];
+
+						// Convert them to the user's currency
+						var newTime = convertTime(oldTime, 1);
+
+						// Replace the old price string with the new one
+						text = text.replace(oldTime, generateReplacement(oldTime, newTime, 'time'));
 					}
 				}
 
 				// If any replacements have been made, replace the text node with a span element containing the converted text
-				if(containsCurrency){
+				if(containsCurrency || containsTimes){
 					var replacement = $('<span>');
 					replacement.attr('data-original-text', oldText);
 					replacement.html(text);
@@ -178,20 +224,20 @@
 		}
 
 		targetSymbol = acronymMap[targetCurrency] || targetCurrency + " ";
-		// targetTimezone = 'GMT';
+		targetTimezone = 'GMT';
 		money.base = 'USD';
 
 		scan('body');
 
-		$('.converted-price')
+		$('.converted-value')
 			.on('mouseenter', function(){
-				$(this).find('.converted-price-hover').show();
+				$(this).find('.converted-value-hover').show();
 			})
 			.on('mouseout', function(){
-				$(this).find('.converted-price-hover').hide();
+				$(this).find('.converted-value-hover').hide();
 			});
 
-		$('.converted-price-hover').each(function(){
+		$('.converted-value-hover').each(function(){
 			var t = $(this);
 			t.css('bottom', -(t.height() + 10));
 		});
