@@ -8,11 +8,14 @@
 	var symbols = ['£', '€', '¥', '$'];
     var currencies = [];
     var i;
+
+    // Set up currencies list using acronyms and symbols.
     for(i = 0; i < acronyms.length; i++){
 		currencies.push(acronyms[i]);
     }
     for(i = 0; i < symbols.length; i++){
 		var symbol = symbols[i];
+		// "$" is a metacharacter in regular expressions, so escape it
 		if(symbol === '$'){
 			symbol = '\\$';
 		}
@@ -42,6 +45,7 @@
 
 	var targetCurrency, targetTimezone, targetSymbol;
 
+
 	var invert = function(obj){
 		var new_obj = {};
 
@@ -63,6 +67,9 @@
 
 	var acronymMap = invert(symbolMap);
 
+
+	// Takes a string representing a foreign price, and a type for the foreign currency,
+	// and returns a string representing the price in the user's target currency.
 	var convertPrice = function(string, type){
 		var acronym;
 		// Convert symbol to acronym if that was what was passed
@@ -83,18 +90,19 @@
 		return newPriceString;
 	};
 
-	var convertTime = function(string, offset, seperator){
+
+	var convertTime = function(string, offset, separator){
 		var hours, minutes;
 		// debugger;
-		seperator = seperator || offset;
-		var seperatorPosition = string.indexOf(':');
-		if(seperatorPosition === -1){
+		separator = separator || offset;
+		var separatorPosition = string.indexOf(':'); //Should this be    string.indexOf(separator);   ?
+		if(separatorPosition === -1){
 			hours = parseInt(string, 10);
 			minutes = 0;
 		}
 		else {
-			hours = parseInt(string.substring(0, seperatorPosition), 10);
-			minutes = parseInt(string.substring(seperatorPosition + 1, string.length), 10);
+			hours = parseInt(string.substring(0, separatorPosition), 10);
+			minutes = parseInt(string.substring(separatorPosition + 1, string.length), 10);
 		}
 
 		hours += offset;
@@ -116,6 +124,7 @@
 		zIndex: 10
 	};
 
+
 	var generateReplacement = function(oldValue, newValue, type){
 		var hover = $('<span>')
 			.addClass('converted-value-hover')
@@ -131,6 +140,9 @@
 		return $('<div>').html(wrapper).html();
 	};
 
+
+	// Recursively scans an element and all of its children, and tries to convert the times and prices
+	// in all the text nodes.
 	var scan = function(element){
 		// debugger;
 		$(element).contents().each(function(index){
@@ -198,6 +210,8 @@
 		});
 	};
 
+
+	// Recursively restores an element and all its children to previous values after conversion
 	var restore = function(element){
 		$(element).contents().each(function(index){
 			if(this.nodeType === 1 && this.nodeName.toLowerCase() !== 'iframe'){
@@ -215,6 +229,7 @@
 			}
 		});
 	};
+
 
 	var complete;
 
