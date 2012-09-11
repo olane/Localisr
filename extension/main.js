@@ -95,7 +95,7 @@
 		var hours, minutes;
 		// debugger;
 		separator = separator || offset;
-		var separatorPosition = string.indexOf(':'); //Should this be    string.indexOf(separator);   ?
+		var separatorPosition = string.indexOf(separator);
 		if(separatorPosition === -1){
 			hours = parseInt(string, 10);
 			minutes = 0;
