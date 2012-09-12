@@ -1,28 +1,3 @@
-var hoverStyle = {
-	position: 'absolute',
-	left: 0,
-	background: '#eee',
-	border: '1px solid #222',
-	padding: '5px',
-	display: 'none',
-	zIndex: 10
-};
-
-var generateReplacement = function(oldValue, newValue, type){
-	var hover = $('<span>')
-		.addClass('converted-value-hover')
-		.css(hoverStyle)
-		.text('Original ' + type + ': ' + oldValue);
-
-	var wrapper = $('<span>')
-		.text(newValue)
-		.addClass('converted-value')
-		.css('position', 'relative')
-		.append(hover);
-
-	return $('<div>').html(wrapper).html();
-};
-
 // Recursively scans an element and all of its children, and tries to convert the times and prices
 // in all the text nodes.
 var scan = function(element){

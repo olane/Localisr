@@ -1,3 +1,12 @@
+var timezones;
+var timezonesString;
+var timeString;
+var timezonesRegex;
+var timeRegex;
+var timeReplaceRegex;
+
+var targetTimezone;
+
 var parseTime = function(string, zone, separator){
 	var hours, minutes;
 	separator = separator || ':';
