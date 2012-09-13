@@ -52,12 +52,19 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
             sendResponse({data: localStorage[request.key]});
             break;
 
+        case 'getLocaleSettings':
+            sendResponse({
+                currency: localStorage['currency'],
+                timezone: localStorage['timezone']
+            });
+            break;
+
         case 'getExchangeRates':
             var currentAge = (new Date()).getTime() / 1000 - parseInt(localStorage['timestamp'], 10);
             if(!localStorage['exchangerates'] || currentAge >= cacheAge){
                 loadExchangeRates();
             }
-            sendResponse({data: JSON.parse(localStorage['exchangerates'])});
+            sendResponse(JSON.parse(localStorage['exchangerates']));
 
             break;
 

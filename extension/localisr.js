@@ -238,8 +238,7 @@ var init = function(){
 		if(!complete[i]){ return; }
 	}
 
-	targetSymbol = acronymMap[targetCurrency] || targetCurrency + " ";
-	targetTimezone = 'GMT';
+	targetSymbol = acronymMap[targetCurrency] || targetCurrency + ' ';
 	money.base = 'USD';
 
 	scan('body');
@@ -269,30 +268,24 @@ else {
 	complete = [false, false, false];
 
 	chrome.extension.sendMessage(
-		{
-			method: 'getExchangeRates'
-		},
+		{method: 'getExchangeRates'},
 		function(exchangeRates){
-			money.rates = exchangeRates.data.rates;
+			money.rates = exchangeRates.rates;
 			complete[0] = true;
 			init();
 		}
 	);
 	chrome.extension.sendMessage(
-		{
-			method: 'getLocalStorage',
-			key: 'currency'
-		},
-		function(response){
-			targetCurrency = response.data || 'AED';
+		{method: 'getLocaleSettings'},
+		function(settings){
+			targetCurrency = settings.currency || 'AED';
+			targetTimezone = settings.timezone || 'UTC';
 			complete[1] = true;
 			init();
 		}
 	);
 	chrome.extension.sendMessage(
-		{
-			method: 'getTimezones'
-		},
+		{method: 'getTimezones'},
 		function(tz){
 			timezones = tz;
 			var acronyms = [];
