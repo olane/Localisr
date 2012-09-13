@@ -20,6 +20,20 @@
             margin: 50px 0 20px;
         }
 
+        h2{
+            font-size: 22px;
+            margin: 0;
+        }
+
+        h3{
+            display: inline;
+            font-size: 15px
+        }
+
+        hr{
+            margin: 10px 0;
+        }
+
         #status{
             position: absolute;
             background: white;
@@ -34,10 +48,6 @@
             width: 500px;
             margin: 0 auto;
             padding: 10px;
-        }
-
-        form *{
-            font-size: 16px;
         }
 
         #save{
@@ -55,6 +65,17 @@
             background: #00a9f9;
         }
 
+        .hint{
+            font-style: italic;
+            font-size: 10px;
+            color: #888;
+        }
+
+        #alwaysrun{
+            width: 100%;
+            min-height: 100px;
+        }
+
     </style>
 </head>
 
@@ -68,12 +89,19 @@
 
         -->
 
-        Currency:
+        <h2>Formats</h2>
+        <h3>Currency:</h3>
         <select id="currency"></select><br>
+
+        <hr>
+
+        <h2>Always convert</h2>
+        <span class="hint">A list of URLs that should be converted when the page loads. One per line.</span>
+        <textarea id="alwaysrun"></textarea>
 
         <div id="save">Save</div>
     </form>
-    <script src="jquery.js"></script>
+    <script src="lib/jquery.js"></script>
     <script src="options.js"></script>
 </body>
 

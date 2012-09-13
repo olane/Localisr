@@ -12,6 +12,8 @@
             localStorage[optionType] = timezone;
         }
 
+        localStorage['alwaysrun'] = $('#alwaysrun').val();
+
         // Update status to let user know options were saved.
         var status = $("#status")
             .text("Options Saved.")
@@ -37,6 +39,8 @@
                 }
             }
         }
+
+        $('#alwaysrun').val(localStorage['alwaysrun']);
     };
 
     $(document).ready(function(){

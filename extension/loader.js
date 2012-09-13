@@ -15,13 +15,17 @@ var loadExchangeRates = function(){
     });
 };
 
-chrome.browserAction.onClicked.addListener(function(tab){
+var injectScript = function(){
     chrome.tabs.executeScript(
         null,
         {
             file: "localisr.min.js"
         }
     );
+};
+
+chrome.browserAction.onClicked.addListener(function(tab){
+    injectScript();
 });
 
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
@@ -52,6 +56,10 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
             });
             sendResponse(d);
 
+            break;
+
+        case 'injectScript':
+            injectScript();
             break;
 
         default:
