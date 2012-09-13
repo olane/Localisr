@@ -19,7 +19,7 @@ chrome.browserAction.onClicked.addListener(function(tab){
     chrome.tabs.executeScript(
         null,
         {
-            file: "main.js"
+            file: "localisr.min.js"
         }
     );
 });
@@ -36,6 +36,21 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
                 loadExchangeRates();
             }
             sendResponse({data: JSON.parse(localStorage['exchangerates'])});
+
+            break;
+
+        case 'getTimezones':
+            var d;
+            $.ajax({
+                url: "zones.json",
+                async: false,
+                dataType: 'json',
+                success: function(data){
+                    console.log(data);
+                    d = data;
+                }
+            });
+            sendResponse(d);
 
             break;
 
