@@ -160,10 +160,10 @@ else {
 			}
 
 			timezonesString = '(' + acronyms.join('|') + '){1}';
-			timeString = "[0-9]{1,2}\\s*:\\s*[0-9]{2}\\s*" + timezonesString;
+			timeString = "[0-9]{1,2}\\s*:\\s*[0-9]{2}\\s*((am)|(pm))?\\s*" + timezonesString;
 			timezonesRegex = new RegExp(timezonesString, 'g');
-			timeRegex = new RegExp(start + timeString + end, 'g');
-			timeReplaceRegex = new RegExp(timeString, 'g');
+			timeRegex = new RegExp(start + timeString + end, 'gi');
+			timeReplaceRegex = new RegExp(timeString, 'gi');
 			complete[2] = true;
 			init();
 		}

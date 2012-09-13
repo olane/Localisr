@@ -66,6 +66,15 @@ var parseTime = function(string, zone, separator){
 		minutes = parseInt(string.substring(separatorPosition + 1, string.length), 10);
 	}
 
+	// Convert PM times to 24 hour equivalents
+	if(string.match(/pm/i) && hours < 12){
+		hours += 12;
+	}
+	// Convert 12:00 am to 00:00
+	if(string.match(/am/i) && hours === 12){
+		hours = 0;
+	}
+
 	// debugger;
 	return convertTime(hours, minutes, zone);
 };
@@ -353,10 +362,10 @@ else {
 			}
 
 			timezonesString = '(' + acronyms.join('|') + '){1}';
-			timeString = "[0-9]{1,2}\\s*:\\s*[0-9]{2}\\s*" + timezonesString;
+			timeString = "[0-9]{1,2}\\s*:\\s*[0-9]{2}\\s*((am)|(pm))?\\s*" + timezonesString;
 			timezonesRegex = new RegExp(timezonesString, 'g');
-			timeRegex = new RegExp(start + timeString + end, 'g');
-			timeReplaceRegex = new RegExp(timeString, 'g');
+			timeRegex = new RegExp(start + timeString + end, 'gi');
+			timeReplaceRegex = new RegExp(timeString, 'gi');
 			complete[2] = true;
 			init();
 		}

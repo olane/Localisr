@@ -20,6 +20,15 @@ var parseTime = function(string, zone, separator){
 		minutes = parseInt(string.substring(separatorPosition + 1, string.length), 10);
 	}
 
+	// Convert PM times to 24 hour equivalents
+	if(string.match(/pm/i) && hours < 12){
+		hours += 12;
+	}
+	// Convert 12:00 am to 00:00
+	if(string.match(/am/i) && hours === 12){
+		hours = 0;
+	}
+
 	// debugger;
 	return convertTime(hours, minutes, zone);
 };
