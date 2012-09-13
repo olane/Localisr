@@ -1,4 +1,5 @@
 var cacheAge = 60 * 60; // seconds
+var debug = true;
 
 var loadExchangeRates = function(){
     $.ajax({
@@ -16,10 +17,11 @@ var loadExchangeRates = function(){
 };
 
 var injectScript = function(){
+    var file = debug ? 'localisr.js' : 'localisr.min.js';
     chrome.tabs.executeScript(
         null,
         {
-            file: "localisr.min.js"
+            file: file
         }
     );
 };
@@ -27,6 +29,22 @@ var injectScript = function(){
 chrome.browserAction.onClicked.addListener(function(tab){
     injectScript();
 });
+
+var currentURL = "";
+
+// chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
+//     currentURL = changeInfo.url || currentURL;
+//     var urls = localStorage.alwaysrun;
+//     if(!urls){ return; }
+//     urls = urls.split('\n');
+
+//     for(var i = 0; i < urls.length; i++){
+//         if(currentURL.match(new RegExp(urls[i]))){
+//             chrome.extension.sendMessage({method: 'injectScript'});
+//             return;
+//         }
+//     }
+// });
 
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
     switch(request.method){
