@@ -26,7 +26,7 @@ var hoverStyle = {
 	border: '1px solid #222',
 	padding: '5px',
 	display: 'none',
-	zIndex: 10
+	zIndex: 9999
 };
 
 var generateReplacement = function(oldValue, newValue, type){

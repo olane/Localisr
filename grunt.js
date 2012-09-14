@@ -56,6 +56,7 @@ module.exports = function(grunt) {
                 '$': true,
                 accounting: true,
                 money: true,
+                moment: true,
                 Localisr: true,
                 chrome: true,
                 'console': true
