@@ -25,6 +25,7 @@ var parseTime = function(string, zone, separator){
 
 	var parseString = string.substring(0, string.length - 4) + offset.string;
 	var time = moment(parseString, formatString);
-	time.local();
+	var diff = offset - timezones[targetTimezone];
+	time.add('hours', diff);
 	return time.format(outputString) + ' ' + targetTimezone;
 };

@@ -1,742 +1,742 @@
 {
-    "FNT": {
-        "string": "-0200", 
-        "offset": -2.0
-    }, 
-    "AKDT": {
-        "string": "-0800", 
-        "offset": -8.0
-    }, 
-    "GST": {
-        "string": "+0400", 
-        "offset": 4.0
-    }, 
-    "CCT": {
-        "string": "+0630", 
-        "offset": 6.5
-    }, 
-    "LINT": {
-        "string": "+1400", 
-        "offset": 14.0
-    }, 
-    "BOT": {
-        "string": "-0400", 
-        "offset": -4.0
-    }, 
-    "EGT": {
-        "string": "-0100", 
-        "offset": -1.0
-    }, 
-    "CKT": {
-        "string": "-1000", 
-        "offset": -10.0
-    }, 
-    "DAVT": {
-        "string": "+0700", 
-        "offset": 7.0
-    }, 
-    "WDT": {
-        "string": "+0900", 
-        "offset": 9.0
-    }, 
-    "WITA": {
-        "string": "+0800", 
-        "offset": 8.0
-    }, 
-    "WEZ": {
-        "string": "+0000", 
-        "offset": 0.0
-    }, 
-    "TMT": {
-        "string": "+0500", 
-        "offset": 5.0
-    }, 
-    "KUYT": {
-        "string": "+0400", 
-        "offset": 4.0
-    }, 
-    "PETT": {
-        "string": "+1200", 
-        "offset": 12.0
-    }, 
-    "PDT": {
-        "string": "-0700", 
-        "offset": -7.0
-    }, 
-    "IOT": {
-        "string": "+0600", 
-        "offset": 6.0
-    }, 
-    "NZDT": {
-        "string": "+1300", 
-        "offset": 13.0
-    }, 
-    "MYT": {
-        "string": "+0800", 
-        "offset": 8.0
-    }, 
-    "HKT": {
-        "string": "+0800", 
-        "offset": 8.0
-    }, 
-    "PET": {
-        "string": "-0500", 
-        "offset": -5.0
-    }, 
-    "PMDT": {
-        "string": "-0200", 
-        "offset": -2.0
-    }, 
-    "NOVST": {
-        "string": "+0700", 
-        "offset": 7.0
-    }, 
-    "AMST": {
-        "string": "-0300", 
-        "offset": -3.0
-    }, 
-    "PMST": {
-        "string": "-0300", 
-        "offset": -3.0
-    }, 
-    "MAWT": {
-        "string": "+0500", 
-        "offset": 5.0
-    }, 
-    "FJST": {
-        "string": "+1300", 
-        "offset": 13.0
-    }, 
-    "HAA": {
-        "string": "-0300", 
-        "offset": -3.0
-    }, 
-    "HAC": {
-        "string": "-0500", 
-        "offset": -5.0
-    }, 
-    "HAE": {
-        "string": "-0400", 
-        "offset": -4.0
-    }, 
-    "BNT": {
-        "string": "+0800", 
-        "offset": 8.0
-    }, 
-    "HAY": {
-        "string": "-0800", 
-        "offset": -8.0
-    }, 
-    "WET": {
-        "string": "+0000", 
-        "offset": 0.0
-    }, 
-    "HAP": {
-        "string": "-0700", 
-        "offset": -7.0
-    }, 
-    "NZST": {
-        "string": "+1200", 
-        "offset": 12.0
-    }, 
-    "HAR": {
-        "string": "-0600", 
-        "offset": -6.0
-    }, 
-    "OMSST": {
-        "string": "+0700", 
-        "offset": 7.0
-    }, 
-    "HAT": {
-        "string": "-0230", 
-        "offset": -2.5
-    }, 
-    "BRST": {
-        "string": "-0200", 
-        "offset": -2.0
-    }, 
-    "PT": {
-        "string": "-0800", 
-        "offset": -8.0
-    }, 
-    "ANAT": {
-        "string": "+1200", 
-        "offset": 12.0
-    }, 
-    "CXT": {
-        "string": "+0700", 
-        "offset": 7.0
-    }, 
-    "UYT": {
-        "string": "-0300", 
-        "offset": -3.0
-    }, 
-    "VLAST": {
-        "string": "+1100", 
-        "offset": 11.0
-    }, 
-    "HOVT": {
-        "string": "+0700", 
-        "offset": 7.0
-    }, 
-    "PYT": {
-        "string": "-0400", 
-        "offset": -4.0
-    }, 
-    "ALMT": {
-        "string": "+0600", 
-        "offset": 6.0
-    }, 
-    "WT": {
-        "string": "+0000", 
-        "offset": 0.0
-    }, 
-    "IRKST": {
-        "string": "+0900", 
-        "offset": 9.0
-    }, 
-    "NPT": {
-        "string": "+0545", 
-        "offset": 5.75
-    }, 
-    "HNT": {
-        "string": "-0330", 
-        "offset": -3.5
-    }, 
-    "KST": {
-        "string": "+0900", 
-        "offset": 9.0
-    }, 
-    "YEKST": {
-        "string": "+0600", 
-        "offset": 6.0
-    }, 
-    "EET": {
-        "string": "+0200", 
-        "offset": 2.0
-    }, 
-    "LHDT": {
-        "string": "+1100", 
-        "offset": 11.0
-    }, 
-    "VLAT": {
-        "string": "+1100", 
-        "offset": 11.0
-    }, 
-    "LHST": {
-        "string": "+1030", 
-        "offset": 10.5
-    }, 
-    "AZST": {
-        "string": "+0500", 
-        "offset": 5.0
-    }, 
-    "WFT": {
-        "string": "+1200", 
-        "offset": 12.0
-    }, 
-    "MART": {
-        "string": "-0930", 
-        "offset": -9.5
-    }, 
-    "PHOT": {
-        "string": "+1300", 
-        "offset": 13.0
-    }, 
-    "PKT": {
-        "string": "+0500", 
-        "offset": 5.0
-    }, 
-    "GET": {
-        "string": "+0400", 
-        "offset": 4.0
-    }, 
-    "YEKT": {
-        "string": "+0600", 
-        "offset": 6.0
-    }, 
-    "EGST": {
-        "string": "+0000", 
-        "offset": 0.0
-    }, 
-    "TKT": {
-        "string": "+1300", 
-        "offset": 13.0
-    }, 
-    "CET": {
-        "string": "+0100", 
-        "offset": 1.0
-    }, 
-    "EEST": {
-        "string": "+0300", 
-        "offset": 3.0
-    }, 
-    "SCT": {
-        "string": "+0400", 
-        "offset": 4.0
-    }, 
-    "AMT": {
-        "string": "-0400", 
-        "offset": -4.0
-    }, 
-    "ChST": {
-        "string": "+1000", 
-        "offset": 10.0
-    }, 
-    "MAGT": {
-        "string": "+1200", 
-        "offset": 12.0
-    }, 
-    "WGT": {
-        "string": "-0300", 
-        "offset": -3.0
-    }, 
-    "NFT": {
-        "string": "+1130", 
-        "offset": 11.5
+    "ADT": {
+        "offset": -3.0, 
+        "string": "-0300"
     }, 
     "AFT": {
-        "string": "+0430", 
-        "offset": 4.5
-    }, 
-    "ET": {
-        "string": "-0500", 
-        "offset": -5.0
-    }, 
-    "MHT": {
-        "string": "+1200", 
-        "offset": 12.0
-    }, 
-    "BTT": {
-        "string": "+0600", 
-        "offset": 6.0
-    }, 
-    "HLV": {
-        "string": "-0430", 
-        "offset": -4.5
-    }, 
-    "YAKST": {
-        "string": "+1000", 
-        "offset": 10.0
-    }, 
-    "TJT": {
-        "string": "+0500", 
-        "offset": 5.0
-    }, 
-    "TVT": {
-        "string": "+1200", 
-        "offset": 12.0
-    }, 
-    "PHT": {
-        "string": "+0800", 
-        "offset": 8.0
-    }, 
-    "HADT": {
-        "string": "-0900", 
-        "offset": -9.0
-    }, 
-    "PST": {
-        "string": "-0800", 
-        "offset": -8.0
-    }, 
-    "HNA": {
-        "string": "-0400", 
-        "offset": -4.0
-    }, 
-    "MUT": {
-        "string": "+0400", 
-        "offset": 4.0
-    }, 
-    "HNC": {
-        "string": "-0600", 
-        "offset": -6.0
-    }, 
-    "GAMT": {
-        "string": "-0900", 
-        "offset": -9.0
-    }, 
-    "HNE": {
-        "string": "-0500", 
-        "offset": -5.0
-    }, 
-    "COT": {
-        "string": "-0500", 
-        "offset": -5.0
-    }, 
-    "IRST": {
-        "string": "+0330", 
-        "offset": 3.5
-    }, 
-    "UYST": {
-        "string": "-0200", 
-        "offset": -2.0
-    }, 
-    "IDT": {
-        "string": "+0300", 
-        "offset": 3.0
-    }, 
-    "AZOST": {
-        "string": "+0000", 
-        "offset": 0.0
-    }, 
-    "IRDT": {
-        "string": "+0430", 
-        "offset": 4.5
-    }, 
-    "RET": {
-        "string": "+0400", 
-        "offset": 4.0
-    }, 
-    "IST": {
-        "string": "+0100", 
-        "offset": 1.0
-    }, 
-    "HNP": {
-        "string": "-0800", 
-        "offset": -8.0
-    }, 
-    "VUT": {
-        "string": "+1100", 
-        "offset": 11.0
-    }, 
-    "HNR": {
-        "string": "-0700", 
-        "offset": -7.0
-    }, 
-    "CHAST": {
-        "string": "+1245", 
-        "offset": 12.75
-    }, 
-    "CST": {
-        "string": "-0600", 
-        "offset": -6.0
-    }, 
-    "HNY": {
-        "string": "-0900", 
-        "offset": -9.0
-    }, 
-    "FJT": {
-        "string": "+1200", 
-        "offset": 12.0
-    }, 
-    "IRKT": {
-        "string": "+0900", 
-        "offset": 9.0
-    }, 
-    "SAST": {
-        "string": "+0200", 
-        "offset": 2.0
-    }, 
-    "AST": {
-        "string": "-0400", 
-        "offset": -4.0
-    }, 
-    "BST": {
-        "string": "+0100", 
-        "offset": 1.0
-    }, 
-    "AZOT": {
-        "string": "-0100", 
-        "offset": -1.0
-    }, 
-    "NUT": {
-        "string": "-1100", 
-        "offset": -11.0
-    }, 
-    "JST": {
-        "string": "+0900", 
-        "offset": 9.0
-    }, 
-    "CAST": {
-        "string": "+0800", 
-        "offset": 8.0
-    }, 
-    "ANAST": {
-        "string": "+1200", 
-        "offset": 12.0
-    }, 
-    "ECT": {
-        "string": "-0500", 
-        "offset": -5.0
-    }, 
-    "MAGST": {
-        "string": "+1200", 
-        "offset": 12.0
-    }, 
-    "AQTT": {
-        "string": "+0500", 
-        "offset": 5.0
-    }, 
-    "YAPT": {
-        "string": "+1000", 
-        "offset": 10.0
-    }, 
-    "EAST": {
-        "string": "-0600", 
-        "offset": -6.0
-    }, 
-    "TAHT": {
-        "string": "-1000", 
-        "offset": -10.0
-    }, 
-    "MDT": {
-        "string": "-0600", 
-        "offset": -6.0
-    }, 
-    "GALT": {
-        "string": "-0600", 
-        "offset": -6.0
-    }, 
-    "ADT": {
-        "string": "-0300", 
-        "offset": -3.0
-    }, 
-    "CLST": {
-        "string": "-0300", 
-        "offset": -3.0
-    }, 
-    "TLT": {
-        "string": "+0900", 
-        "offset": 9.0
-    }, 
-    "OMST": {
-        "string": "+0700", 
-        "offset": 7.0
-    }, 
-    "CLT": {
-        "string": "-0400", 
-        "offset": -4.0
-    }, 
-    "WAST": {
-        "string": "+0200", 
-        "offset": 2.0
-    }, 
-    "SRT": {
-        "string": "-0300", 
-        "offset": -3.0
-    }, 
-    "GILT": {
-        "string": "+1200", 
-        "offset": 12.0
-    }, 
-    "WAT": {
-        "string": "+0100", 
-        "offset": 1.0
-    }, 
-    "NDT": {
-        "string": "-0230", 
-        "offset": -2.5
-    }, 
-    "GMT": {
-        "string": "+0000", 
-        "offset": 0.0
-    }, 
-    "WIB": {
-        "string": "+0700", 
-        "offset": 7.0
-    }, 
-    "SBT": {
-        "string": "+1100", 
-        "offset": 11.0
-    }, 
-    "PYST": {
-        "string": "-0300", 
-        "offset": -3.0
-    }, 
-    "MMT": {
-        "string": "+0630", 
-        "offset": 6.5
-    }, 
-    "BRT": {
-        "string": "-0300", 
-        "offset": -3.0
-    }, 
-    "YAKT": {
-        "string": "+1000", 
-        "offset": 10.0
-    }, 
-    "CDT": {
-        "string": "-0500", 
-        "offset": -5.0
-    }, 
-    "WIT": {
-        "string": "+0900", 
-        "offset": 9.0
-    }, 
-    "EDT": {
-        "string": "-0400", 
-        "offset": -4.0
-    }, 
-    "SST": {
-        "string": "-1100", 
-        "offset": -11.0
-    }, 
-    "NOVT": {
-        "string": "+0600", 
-        "offset": 6.0
-    }, 
-    "MEZ": {
-        "string": "+0100", 
-        "offset": 1.0
-    }, 
-    "KRAST": {
-        "string": "+0800", 
-        "offset": 8.0
-    }, 
-    "TFT": {
-        "string": "+0500", 
-        "offset": 5.0
-    }, 
-    "ULAT": {
-        "string": "+0800", 
-        "offset": 8.0
-    }, 
-    "KRAT": {
-        "string": "+0800", 
-        "offset": 8.0
-    }, 
-    "PONT": {
-        "string": "+1100", 
-        "offset": 11.0
-    }, 
-    "CVT": {
-        "string": "-0100", 
-        "offset": -1.0
-    }, 
-    "MST": {
-        "string": "-0700", 
-        "offset": -7.0
-    }, 
-    "VET": {
-        "string": "-0430", 
-        "offset": -4.5
-    }, 
-    "CAT": {
-        "string": "+0200", 
-        "offset": 2.0
-    }, 
-    "MSK": {
-        "string": "+0400", 
-        "offset": 4.0
-    }, 
-    "WST": {
-        "string": "+0100", 
-        "offset": 1.0
-    }, 
-    "MVT": {
-        "string": "+0500", 
-        "offset": 5.0
-    }, 
-    "MSD": {
-        "string": "+0400", 
-        "offset": 4.0
-    }, 
-    "AZT": {
-        "string": "+0400", 
-        "offset": 4.0
-    }, 
-    "SGT": {
-        "string": "+0800", 
-        "offset": 8.0
-    }, 
-    "HAST": {
-        "string": "-1000", 
-        "offset": -10.0
+        "offset": 4.5, 
+        "string": "+0430"
+    }, 
+    "AKDT": {
+        "offset": -8.0, 
+        "string": "-0800"
     }, 
     "AKST": {
-        "string": "-0900", 
-        "offset": -9.0
+        "offset": -9.0, 
+        "string": "-0900"
     }, 
-    "PGT": {
-        "string": "+1000", 
-        "offset": 10.0
+    "ALMT": {
+        "offset": 6.0, 
+        "string": "+0600"
     }, 
-    "GYT": {
-        "string": "-0400", 
-        "offset": -4.0
+    "AMST": {
+        "offset": -3.0, 
+        "string": "-0300"
     }, 
-    "CEST": {
-        "string": "+0200", 
-        "offset": 2.0
+    "AMT": {
+        "offset": -4.0, 
+        "string": "-0400"
     }, 
-    "UZT": {
-        "string": "+0500", 
-        "offset": 5.0
+    "ANAST": {
+        "offset": 12.0, 
+        "string": "+1200"
     }, 
-    "NST": {
-        "string": "-0330", 
-        "offset": -3.5
+    "ANAT": {
+        "offset": 12.0, 
+        "string": "+1200"
     }, 
-    "EAT": {
-        "string": "+0300", 
-        "offset": 3.0
-    }, 
-    "MESZ": {
-        "string": "+0200", 
-        "offset": 2.0
-    }, 
-    "EST": {
-        "string": "-0500", 
-        "offset": -5.0
-    }, 
-    "PETST": {
-        "string": "+1200", 
-        "offset": 12.0
-    }, 
-    "CHADT": {
-        "string": "+1345", 
-        "offset": 13.75
-    }, 
-    "FKST": {
-        "string": "-0300", 
-        "offset": -3.0
-    }, 
-    "FKT": {
-        "string": "-0400", 
-        "offset": -4.0
-    }, 
-    "ICT": {
-        "string": "+0700", 
-        "offset": 7.0
-    }, 
-    "PWT": {
-        "string": "+0900", 
-        "offset": 9.0
+    "AQTT": {
+        "offset": 5.0, 
+        "string": "+0500"
     }, 
     "ART": {
-        "string": "-0300", 
-        "offset": -3.0
+        "offset": -3.0, 
+        "string": "-0300"
     }, 
-    "KGT": {
-        "string": "+0600", 
-        "offset": 6.0
+    "AST": {
+        "offset": -4.0, 
+        "string": "-0400"
     }, 
-    "WESZ": {
-        "string": "+0100", 
-        "offset": 1.0
+    "AZOST": {
+        "offset": 0.0, 
+        "string": "+0000"
     }, 
-    "WEST": {
-        "string": "+0100", 
-        "offset": 1.0
+    "AZOT": {
+        "offset": -1.0, 
+        "string": "-0100"
     }, 
-    "NCT": {
-        "string": "+1100", 
-        "offset": 11.0
+    "AZST": {
+        "offset": 5.0, 
+        "string": "+0500"
     }, 
-    "GFT": {
-        "string": "-0300", 
-        "offset": -3.0
+    "AZT": {
+        "offset": 4.0, 
+        "string": "+0400"
     }, 
-    "WGST": {
-        "string": "-0200", 
-        "offset": -2.0
+    "BNT": {
+        "offset": 8.0, 
+        "string": "+0800"
+    }, 
+    "BOT": {
+        "offset": -4.0, 
+        "string": "-0400"
+    }, 
+    "BRST": {
+        "offset": -2.0, 
+        "string": "-0200"
+    }, 
+    "BRT": {
+        "offset": -3.0, 
+        "string": "-0300"
+    }, 
+    "BST": {
+        "offset": 1.0, 
+        "string": "+0100"
+    }, 
+    "BTT": {
+        "offset": 6.0, 
+        "string": "+0600"
+    }, 
+    "CAST": {
+        "offset": 8.0, 
+        "string": "+0800"
+    }, 
+    "CAT": {
+        "offset": 2.0, 
+        "string": "+0200"
+    }, 
+    "CCT": {
+        "offset": 6.5, 
+        "string": "+0630"
+    }, 
+    "CDT": {
+        "offset": -5.0, 
+        "string": "-0500"
+    }, 
+    "CEST": {
+        "offset": 2.0, 
+        "string": "+0200"
+    }, 
+    "CET": {
+        "offset": 1.0, 
+        "string": "+0100"
+    }, 
+    "CHADT": {
+        "offset": 13.75, 
+        "string": "+1345"
+    }, 
+    "CHAST": {
+        "offset": 12.75, 
+        "string": "+1245"
+    }, 
+    "CKT": {
+        "offset": -10.0, 
+        "string": "-1000"
+    }, 
+    "CLST": {
+        "offset": -3.0, 
+        "string": "-0300"
+    }, 
+    "CLT": {
+        "offset": -4.0, 
+        "string": "-0400"
+    }, 
+    "COT": {
+        "offset": -5.0, 
+        "string": "-0500"
+    }, 
+    "CST": {
+        "offset": -6.0, 
+        "string": "-0600"
+    }, 
+    "CVT": {
+        "offset": -1.0, 
+        "string": "-0100"
+    }, 
+    "CXT": {
+        "offset": 7.0, 
+        "string": "+0700"
+    }, 
+    "ChST": {
+        "offset": 10.0, 
+        "string": "+1000"
+    }, 
+    "DAVT": {
+        "offset": 7.0, 
+        "string": "+0700"
     }, 
     "EASST": {
-        "string": "-0500", 
-        "offset": -5.0
+        "offset": -5.0, 
+        "string": "-0500"
+    }, 
+    "EAST": {
+        "offset": -6.0, 
+        "string": "-0600"
+    }, 
+    "EAT": {
+        "offset": 3.0, 
+        "string": "+0300"
+    }, 
+    "ECT": {
+        "offset": -5.0, 
+        "string": "-0500"
+    }, 
+    "EDT": {
+        "offset": -4.0, 
+        "string": "-0400"
+    }, 
+    "EEST": {
+        "offset": 3.0, 
+        "string": "+0300"
+    }, 
+    "EET": {
+        "offset": 2.0, 
+        "string": "+0200"
+    }, 
+    "EGST": {
+        "offset": 0.0, 
+        "string": "+0000"
+    }, 
+    "EGT": {
+        "offset": -1.0, 
+        "string": "-0100"
+    }, 
+    "EST": {
+        "offset": -5.0, 
+        "string": "-0500"
+    }, 
+    "ET": {
+        "offset": -5.0, 
+        "string": "-0500"
+    }, 
+    "FJST": {
+        "offset": 13.0, 
+        "string": "+1300"
+    }, 
+    "FJT": {
+        "offset": 12.0, 
+        "string": "+1200"
+    }, 
+    "FKST": {
+        "offset": -3.0, 
+        "string": "-0300"
+    }, 
+    "FKT": {
+        "offset": -4.0, 
+        "string": "-0400"
+    }, 
+    "FNT": {
+        "offset": -2.0, 
+        "string": "-0200"
+    }, 
+    "GALT": {
+        "offset": -6.0, 
+        "string": "-0600"
+    }, 
+    "GAMT": {
+        "offset": -9.0, 
+        "string": "-0900"
+    }, 
+    "GET": {
+        "offset": 4.0, 
+        "string": "+0400"
+    }, 
+    "GFT": {
+        "offset": -3.0, 
+        "string": "-0300"
+    }, 
+    "GILT": {
+        "offset": 12.0, 
+        "string": "+1200"
+    }, 
+    "GMT": {
+        "offset": 0.0, 
+        "string": "+0000"
+    }, 
+    "GST": {
+        "offset": 4.0, 
+        "string": "+0400"
+    }, 
+    "GYT": {
+        "offset": -4.0, 
+        "string": "-0400"
+    }, 
+    "HAA": {
+        "offset": -3.0, 
+        "string": "-0300"
+    }, 
+    "HAC": {
+        "offset": -5.0, 
+        "string": "-0500"
+    }, 
+    "HADT": {
+        "offset": -9.0, 
+        "string": "-0900"
+    }, 
+    "HAE": {
+        "offset": -4.0, 
+        "string": "-0400"
+    }, 
+    "HAP": {
+        "offset": -7.0, 
+        "string": "-0700"
+    }, 
+    "HAR": {
+        "offset": -6.0, 
+        "string": "-0600"
+    }, 
+    "HAST": {
+        "offset": -10.0, 
+        "string": "-1000"
+    }, 
+    "HAT": {
+        "offset": -2.5, 
+        "string": "-0230"
+    }, 
+    "HAY": {
+        "offset": -8.0, 
+        "string": "-0800"
+    }, 
+    "HKT": {
+        "offset": 8.0, 
+        "string": "+0800"
+    }, 
+    "HLV": {
+        "offset": -4.5, 
+        "string": "-0430"
+    }, 
+    "HNA": {
+        "offset": -4.0, 
+        "string": "-0400"
+    }, 
+    "HNC": {
+        "offset": -6.0, 
+        "string": "-0600"
+    }, 
+    "HNE": {
+        "offset": -5.0, 
+        "string": "-0500"
+    }, 
+    "HNP": {
+        "offset": -8.0, 
+        "string": "-0800"
+    }, 
+    "HNR": {
+        "offset": -7.0, 
+        "string": "-0700"
+    }, 
+    "HNT": {
+        "offset": -3.5, 
+        "string": "-0330"
+    }, 
+    "HNY": {
+        "offset": -9.0, 
+        "string": "-0900"
+    }, 
+    "HOVT": {
+        "offset": 7.0, 
+        "string": "+0700"
+    }, 
+    "ICT": {
+        "offset": 7.0, 
+        "string": "+0700"
+    }, 
+    "IDT": {
+        "offset": 3.0, 
+        "string": "+0300"
+    }, 
+    "IOT": {
+        "offset": 6.0, 
+        "string": "+0600"
+    }, 
+    "IRDT": {
+        "offset": 4.5, 
+        "string": "+0430"
+    }, 
+    "IRKST": {
+        "offset": 9.0, 
+        "string": "+0900"
+    }, 
+    "IRKT": {
+        "offset": 9.0, 
+        "string": "+0900"
+    }, 
+    "IRST": {
+        "offset": 3.5, 
+        "string": "+0330"
+    }, 
+    "IST": {
+        "offset": 1.0, 
+        "string": "+0100"
+    }, 
+    "JST": {
+        "offset": 9.0, 
+        "string": "+0900"
+    }, 
+    "KGT": {
+        "offset": 6.0, 
+        "string": "+0600"
+    }, 
+    "KRAST": {
+        "offset": 8.0, 
+        "string": "+0800"
+    }, 
+    "KRAT": {
+        "offset": 8.0, 
+        "string": "+0800"
+    }, 
+    "KST": {
+        "offset": 9.0, 
+        "string": "+0900"
+    }, 
+    "KUYT": {
+        "offset": 4.0, 
+        "string": "+0400"
+    }, 
+    "LHDT": {
+        "offset": 11.0, 
+        "string": "+1100"
+    }, 
+    "LHST": {
+        "offset": 10.5, 
+        "string": "+1030"
+    }, 
+    "LINT": {
+        "offset": 14.0, 
+        "string": "+1400"
+    }, 
+    "MAGST": {
+        "offset": 12.0, 
+        "string": "+1200"
+    }, 
+    "MAGT": {
+        "offset": 12.0, 
+        "string": "+1200"
+    }, 
+    "MART": {
+        "offset": -9.5, 
+        "string": "-0930"
+    }, 
+    "MAWT": {
+        "offset": 5.0, 
+        "string": "+0500"
+    }, 
+    "MDT": {
+        "offset": -6.0, 
+        "string": "-0600"
+    }, 
+    "MESZ": {
+        "offset": 2.0, 
+        "string": "+0200"
+    }, 
+    "MEZ": {
+        "offset": 1.0, 
+        "string": "+0100"
+    }, 
+    "MHT": {
+        "offset": 12.0, 
+        "string": "+1200"
+    }, 
+    "MMT": {
+        "offset": 6.5, 
+        "string": "+0630"
+    }, 
+    "MSD": {
+        "offset": 4.0, 
+        "string": "+0400"
+    }, 
+    "MSK": {
+        "offset": 4.0, 
+        "string": "+0400"
+    }, 
+    "MST": {
+        "offset": -7.0, 
+        "string": "-0700"
+    }, 
+    "MUT": {
+        "offset": 4.0, 
+        "string": "+0400"
+    }, 
+    "MVT": {
+        "offset": 5.0, 
+        "string": "+0500"
+    }, 
+    "MYT": {
+        "offset": 8.0, 
+        "string": "+0800"
+    }, 
+    "NCT": {
+        "offset": 11.0, 
+        "string": "+1100"
+    }, 
+    "NDT": {
+        "offset": -2.5, 
+        "string": "-0230"
+    }, 
+    "NFT": {
+        "offset": 11.5, 
+        "string": "+1130"
+    }, 
+    "NOVST": {
+        "offset": 7.0, 
+        "string": "+0700"
+    }, 
+    "NOVT": {
+        "offset": 6.0, 
+        "string": "+0600"
+    }, 
+    "NPT": {
+        "offset": 5.75, 
+        "string": "+0545"
+    }, 
+    "NST": {
+        "offset": -3.5, 
+        "string": "-0330"
+    }, 
+    "NUT": {
+        "offset": -11.0, 
+        "string": "-1100"
+    }, 
+    "NZDT": {
+        "offset": 13.0, 
+        "string": "+1300"
+    }, 
+    "NZST": {
+        "offset": 12.0, 
+        "string": "+1200"
+    }, 
+    "OMSST": {
+        "offset": 7.0, 
+        "string": "+0700"
+    }, 
+    "OMST": {
+        "offset": 7.0, 
+        "string": "+0700"
+    }, 
+    "PDT": {
+        "offset": -7.0, 
+        "string": "-0700"
+    }, 
+    "PET": {
+        "offset": -5.0, 
+        "string": "-0500"
+    }, 
+    "PETST": {
+        "offset": 12.0, 
+        "string": "+1200"
+    }, 
+    "PETT": {
+        "offset": 12.0, 
+        "string": "+1200"
+    }, 
+    "PGT": {
+        "offset": 10.0, 
+        "string": "+1000"
+    }, 
+    "PHOT": {
+        "offset": 13.0, 
+        "string": "+1300"
+    }, 
+    "PHT": {
+        "offset": 8.0, 
+        "string": "+0800"
+    }, 
+    "PKT": {
+        "offset": 5.0, 
+        "string": "+0500"
+    }, 
+    "PMDT": {
+        "offset": -2.0, 
+        "string": "-0200"
+    }, 
+    "PMST": {
+        "offset": -3.0, 
+        "string": "-0300"
+    }, 
+    "PONT": {
+        "offset": 11.0, 
+        "string": "+1100"
+    }, 
+    "PST": {
+        "offset": -8.0, 
+        "string": "-0800"
+    }, 
+    "PT": {
+        "offset": -8.0, 
+        "string": "-0800"
+    }, 
+    "PWT": {
+        "offset": 9.0, 
+        "string": "+0900"
+    }, 
+    "PYST": {
+        "offset": -3.0, 
+        "string": "-0300"
+    }, 
+    "PYT": {
+        "offset": -4.0, 
+        "string": "-0400"
+    }, 
+    "RET": {
+        "offset": 4.0, 
+        "string": "+0400"
     }, 
     "SAMT": {
-        "string": "+0400", 
-        "offset": 4.0
+        "offset": 4.0, 
+        "string": "+0400"
+    }, 
+    "SAST": {
+        "offset": 2.0, 
+        "string": "+0200"
+    }, 
+    "SBT": {
+        "offset": 11.0, 
+        "string": "+1100"
+    }, 
+    "SCT": {
+        "offset": 4.0, 
+        "string": "+0400"
+    }, 
+    "SGT": {
+        "offset": 8.0, 
+        "string": "+0800"
+    }, 
+    "SRT": {
+        "offset": -3.0, 
+        "string": "-0300"
+    }, 
+    "SST": {
+        "offset": -11.0, 
+        "string": "-1100"
+    }, 
+    "TAHT": {
+        "offset": -10.0, 
+        "string": "-1000"
+    }, 
+    "TFT": {
+        "offset": 5.0, 
+        "string": "+0500"
+    }, 
+    "TJT": {
+        "offset": 5.0, 
+        "string": "+0500"
+    }, 
+    "TKT": {
+        "offset": 13.0, 
+        "string": "+1300"
+    }, 
+    "TLT": {
+        "offset": 9.0, 
+        "string": "+0900"
+    }, 
+    "TMT": {
+        "offset": 5.0, 
+        "string": "+0500"
+    }, 
+    "TVT": {
+        "offset": 12.0, 
+        "string": "+1200"
+    }, 
+    "ULAT": {
+        "offset": 8.0, 
+        "string": "+0800"
+    }, 
+    "UYST": {
+        "offset": -2.0, 
+        "string": "-0200"
+    }, 
+    "UYT": {
+        "offset": -3.0, 
+        "string": "-0300"
+    }, 
+    "UZT": {
+        "offset": 5.0, 
+        "string": "+0500"
+    }, 
+    "VET": {
+        "offset": -4.5, 
+        "string": "-0430"
+    }, 
+    "VLAST": {
+        "offset": 11.0, 
+        "string": "+1100"
+    }, 
+    "VLAT": {
+        "offset": 11.0, 
+        "string": "+1100"
+    }, 
+    "VUT": {
+        "offset": 11.0, 
+        "string": "+1100"
+    }, 
+    "WAST": {
+        "offset": 2.0, 
+        "string": "+0200"
+    }, 
+    "WAT": {
+        "offset": 1.0, 
+        "string": "+0100"
+    }, 
+    "WDT": {
+        "offset": 9.0, 
+        "string": "+0900"
+    }, 
+    "WEST": {
+        "offset": 1.0, 
+        "string": "+0100"
+    }, 
+    "WESZ": {
+        "offset": 1.0, 
+        "string": "+0100"
+    }, 
+    "WET": {
+        "offset": 0.0, 
+        "string": "+0000"
+    }, 
+    "WEZ": {
+        "offset": 0.0, 
+        "string": "+0000"
+    }, 
+    "WFT": {
+        "offset": 12.0, 
+        "string": "+1200"
+    }, 
+    "WGST": {
+        "offset": -2.0, 
+        "string": "-0200"
+    }, 
+    "WGT": {
+        "offset": -3.0, 
+        "string": "-0300"
+    }, 
+    "WIB": {
+        "offset": 7.0, 
+        "string": "+0700"
+    }, 
+    "WIT": {
+        "offset": 9.0, 
+        "string": "+0900"
+    }, 
+    "WITA": {
+        "offset": 8.0, 
+        "string": "+0800"
+    }, 
+    "WST": {
+        "offset": 1.0, 
+        "string": "+0100"
+    }, 
+    "WT": {
+        "offset": 0.0, 
+        "string": "+0000"
+    }, 
+    "YAKST": {
+        "offset": 10.0, 
+        "string": "+1000"
+    }, 
+    "YAKT": {
+        "offset": 10.0, 
+        "string": "+1000"
+    }, 
+    "YAPT": {
+        "offset": 10.0, 
+        "string": "+1000"
+    }, 
+    "YEKST": {
+        "offset": 6.0, 
+        "string": "+0600"
+    }, 
+    "YEKT": {
+        "offset": 6.0, 
+        "string": "+0600"
     }
 }

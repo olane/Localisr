@@ -34,4 +34,4 @@ for l in f:
 
 f2 = open(os.path.join(os.path.dirname(__file__), '../extension/zones.json'), 'w')
 
-f2.write(json.dumps(a, indent=4))
+f2.write(json.dumps(a, indent=4, sort_keys=True))
