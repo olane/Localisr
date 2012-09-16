@@ -75,15 +75,15 @@ var parseTime = function(string, zone, separator){
 
 	var parseString = string.substring(0, string.length - 4) + totalOffsetString;
 	var time = moment(parseString, formatString);
-	var diff = offset - timezones[targetTimezone];
-	time.add('hours', diff);
+	// var diff = offset - timezones[targetTimezone];
+	// time.add('hours', diff);
 	return time.format(outputString) + ' ' + targetTimezone;
 };
 
 
 // Converts something like -13.75 to "-1345" or 5 to "+0500"
 var offsetToString = function(offset){
-	console.log(offset);
+	// console.log(offset);
 
 	var string = "";
 
@@ -116,7 +116,7 @@ var offsetToString = function(offset){
 	else{
 		string += "00";
 	}
-	console.log(string);
+	// console.log(string);
 	return string;
 };
 
