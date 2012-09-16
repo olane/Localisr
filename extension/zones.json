@@ -1,742 +1,557 @@
 {
     "ADT": {
-        "offset": -3.0, 
-        "string": "-0300"
+        "offset": -3.0
     }, 
     "AFT": {
-        "offset": 4.5, 
-        "string": "+0430"
+        "offset": 4.5
     }, 
     "AKDT": {
-        "offset": -8.0, 
-        "string": "-0800"
+        "offset": -8.0
     }, 
     "AKST": {
-        "offset": -9.0, 
-        "string": "-0900"
+        "offset": -9.0
     }, 
     "ALMT": {
-        "offset": 6.0, 
-        "string": "+0600"
+        "offset": 6.0
     }, 
     "AMST": {
-        "offset": -3.0, 
-        "string": "-0300"
+        "offset": -3.0
     }, 
     "AMT": {
-        "offset": -4.0, 
-        "string": "-0400"
+        "offset": -4.0
     }, 
     "ANAST": {
-        "offset": 12.0, 
-        "string": "+1200"
+        "offset": 12.0
     }, 
     "ANAT": {
-        "offset": 12.0, 
-        "string": "+1200"
+        "offset": 12.0
     }, 
     "AQTT": {
-        "offset": 5.0, 
-        "string": "+0500"
+        "offset": 5.0
     }, 
     "ART": {
-        "offset": -3.0, 
-        "string": "-0300"
+        "offset": -3.0
     }, 
     "AST": {
-        "offset": -4.0, 
-        "string": "-0400"
+        "offset": -4.0
     }, 
     "AZOST": {
-        "offset": 0.0, 
-        "string": "+0000"
+        "offset": 0.0
     }, 
     "AZOT": {
-        "offset": -1.0, 
-        "string": "-0100"
+        "offset": -1.0
     }, 
     "AZST": {
-        "offset": 5.0, 
-        "string": "+0500"
+        "offset": 5.0
     }, 
     "AZT": {
-        "offset": 4.0, 
-        "string": "+0400"
+        "offset": 4.0
     }, 
     "BNT": {
-        "offset": 8.0, 
-        "string": "+0800"
+        "offset": 8.0
     }, 
     "BOT": {
-        "offset": -4.0, 
-        "string": "-0400"
+        "offset": -4.0
     }, 
     "BRST": {
-        "offset": -2.0, 
-        "string": "-0200"
+        "offset": -2.0
     }, 
     "BRT": {
-        "offset": -3.0, 
-        "string": "-0300"
+        "offset": -3.0
     }, 
     "BST": {
-        "offset": 1.0, 
-        "string": "+0100"
+        "offset": 1.0
     }, 
     "BTT": {
-        "offset": 6.0, 
-        "string": "+0600"
+        "offset": 6.0
     }, 
     "CAST": {
-        "offset": 8.0, 
-        "string": "+0800"
+        "offset": 8.0
     }, 
     "CAT": {
-        "offset": 2.0, 
-        "string": "+0200"
+        "offset": 2.0
     }, 
     "CCT": {
-        "offset": 6.5, 
-        "string": "+0630"
+        "offset": 6.5
     }, 
     "CDT": {
-        "offset": -5.0, 
-        "string": "-0500"
+        "offset": -5.0
     }, 
     "CEST": {
-        "offset": 2.0, 
-        "string": "+0200"
+        "offset": 2.0
     }, 
     "CET": {
-        "offset": 1.0, 
-        "string": "+0100"
+        "offset": 1.0
     }, 
     "CHADT": {
-        "offset": 13.75, 
-        "string": "+1345"
+        "offset": 13.75
     }, 
     "CHAST": {
-        "offset": 12.75, 
-        "string": "+1245"
+        "offset": 12.75
     }, 
     "CKT": {
-        "offset": -10.0, 
-        "string": "-1000"
+        "offset": -10.0
     }, 
     "CLST": {
-        "offset": -3.0, 
-        "string": "-0300"
+        "offset": -3.0
     }, 
     "CLT": {
-        "offset": -4.0, 
-        "string": "-0400"
+        "offset": -4.0
     }, 
     "COT": {
-        "offset": -5.0, 
-        "string": "-0500"
+        "offset": -5.0
     }, 
     "CST": {
-        "offset": -6.0, 
-        "string": "-0600"
+        "offset": -6.0
     }, 
     "CVT": {
-        "offset": -1.0, 
-        "string": "-0100"
+        "offset": -1.0
     }, 
     "CXT": {
-        "offset": 7.0, 
-        "string": "+0700"
+        "offset": 7.0
     }, 
     "ChST": {
-        "offset": 10.0, 
-        "string": "+1000"
+        "offset": 10.0
     }, 
     "DAVT": {
-        "offset": 7.0, 
-        "string": "+0700"
+        "offset": 7.0
     }, 
     "EASST": {
-        "offset": -5.0, 
-        "string": "-0500"
+        "offset": -5.0
     }, 
     "EAST": {
-        "offset": -6.0, 
-        "string": "-0600"
+        "offset": -6.0
     }, 
     "EAT": {
-        "offset": 3.0, 
-        "string": "+0300"
+        "offset": 3.0
     }, 
     "ECT": {
-        "offset": -5.0, 
-        "string": "-0500"
+        "offset": -5.0
     }, 
     "EDT": {
-        "offset": -4.0, 
-        "string": "-0400"
+        "offset": -4.0
     }, 
     "EEST": {
-        "offset": 3.0, 
-        "string": "+0300"
+        "offset": 3.0
     }, 
     "EET": {
-        "offset": 2.0, 
-        "string": "+0200"
+        "offset": 2.0
     }, 
     "EGST": {
-        "offset": 0.0, 
-        "string": "+0000"
+        "offset": 0.0
     }, 
     "EGT": {
-        "offset": -1.0, 
-        "string": "-0100"
+        "offset": -1.0
     }, 
     "EST": {
-        "offset": -5.0, 
-        "string": "-0500"
+        "offset": -5.0
     }, 
     "ET": {
-        "offset": -5.0, 
-        "string": "-0500"
+        "offset": -5.0
     }, 
     "FJST": {
-        "offset": 13.0, 
-        "string": "+1300"
+        "offset": 13.0
     }, 
     "FJT": {
-        "offset": 12.0, 
-        "string": "+1200"
+        "offset": 12.0
     }, 
     "FKST": {
-        "offset": -3.0, 
-        "string": "-0300"
+        "offset": -3.0
     }, 
     "FKT": {
-        "offset": -4.0, 
-        "string": "-0400"
+        "offset": -4.0
     }, 
     "FNT": {
-        "offset": -2.0, 
-        "string": "-0200"
+        "offset": -2.0
     }, 
     "GALT": {
-        "offset": -6.0, 
-        "string": "-0600"
+        "offset": -6.0
     }, 
     "GAMT": {
-        "offset": -9.0, 
-        "string": "-0900"
+        "offset": -9.0
     }, 
     "GET": {
-        "offset": 4.0, 
-        "string": "+0400"
+        "offset": 4.0
     }, 
     "GFT": {
-        "offset": -3.0, 
-        "string": "-0300"
+        "offset": -3.0
     }, 
     "GILT": {
-        "offset": 12.0, 
-        "string": "+1200"
+        "offset": 12.0
     }, 
     "GMT": {
-        "offset": 0.0, 
-        "string": "+0000"
+        "offset": 0.0
     }, 
     "GST": {
-        "offset": 4.0, 
-        "string": "+0400"
+        "offset": 4.0
     }, 
     "GYT": {
-        "offset": -4.0, 
-        "string": "-0400"
+        "offset": -4.0
     }, 
     "HAA": {
-        "offset": -3.0, 
-        "string": "-0300"
+        "offset": -3.0
     }, 
     "HAC": {
-        "offset": -5.0, 
-        "string": "-0500"
+        "offset": -5.0
     }, 
     "HADT": {
-        "offset": -9.0, 
-        "string": "-0900"
+        "offset": -9.0
     }, 
     "HAE": {
-        "offset": -4.0, 
-        "string": "-0400"
+        "offset": -4.0
     }, 
     "HAP": {
-        "offset": -7.0, 
-        "string": "-0700"
+        "offset": -7.0
     }, 
     "HAR": {
-        "offset": -6.0, 
-        "string": "-0600"
+        "offset": -6.0
     }, 
     "HAST": {
-        "offset": -10.0, 
-        "string": "-1000"
+        "offset": -10.0
     }, 
     "HAT": {
-        "offset": -2.5, 
-        "string": "-0230"
+        "offset": -2.5
     }, 
     "HAY": {
-        "offset": -8.0, 
-        "string": "-0800"
+        "offset": -8.0
     }, 
     "HKT": {
-        "offset": 8.0, 
-        "string": "+0800"
+        "offset": 8.0
     }, 
     "HLV": {
-        "offset": -4.5, 
-        "string": "-0430"
+        "offset": -4.5
     }, 
     "HNA": {
-        "offset": -4.0, 
-        "string": "-0400"
+        "offset": -4.0
     }, 
     "HNC": {
-        "offset": -6.0, 
-        "string": "-0600"
+        "offset": -6.0
     }, 
     "HNE": {
-        "offset": -5.0, 
-        "string": "-0500"
+        "offset": -5.0
     }, 
     "HNP": {
-        "offset": -8.0, 
-        "string": "-0800"
+        "offset": -8.0
     }, 
     "HNR": {
-        "offset": -7.0, 
-        "string": "-0700"
+        "offset": -7.0
     }, 
     "HNT": {
-        "offset": -3.5, 
-        "string": "-0330"
+        "offset": -3.5
     }, 
     "HNY": {
-        "offset": -9.0, 
-        "string": "-0900"
+        "offset": -9.0
     }, 
     "HOVT": {
-        "offset": 7.0, 
-        "string": "+0700"
+        "offset": 7.0
     }, 
     "ICT": {
-        "offset": 7.0, 
-        "string": "+0700"
+        "offset": 7.0
     }, 
     "IDT": {
-        "offset": 3.0, 
-        "string": "+0300"
+        "offset": 3.0
     }, 
     "IOT": {
-        "offset": 6.0, 
-        "string": "+0600"
+        "offset": 6.0
     }, 
     "IRDT": {
-        "offset": 4.5, 
-        "string": "+0430"
+        "offset": 4.5
     }, 
     "IRKST": {
-        "offset": 9.0, 
-        "string": "+0900"
+        "offset": 9.0
     }, 
     "IRKT": {
-        "offset": 9.0, 
-        "string": "+0900"
+        "offset": 9.0
     }, 
     "IRST": {
-        "offset": 3.5, 
-        "string": "+0330"
+        "offset": 3.5
     }, 
     "IST": {
-        "offset": 1.0, 
-        "string": "+0100"
+        "offset": 1.0
     }, 
     "JST": {
-        "offset": 9.0, 
-        "string": "+0900"
+        "offset": 9.0
     }, 
     "KGT": {
-        "offset": 6.0, 
-        "string": "+0600"
+        "offset": 6.0
     }, 
     "KRAST": {
-        "offset": 8.0, 
-        "string": "+0800"
+        "offset": 8.0
     }, 
     "KRAT": {
-        "offset": 8.0, 
-        "string": "+0800"
+        "offset": 8.0
     }, 
     "KST": {
-        "offset": 9.0, 
-        "string": "+0900"
+        "offset": 9.0
     }, 
     "KUYT": {
-        "offset": 4.0, 
-        "string": "+0400"
+        "offset": 4.0
     }, 
     "LHDT": {
-        "offset": 11.0, 
-        "string": "+1100"
+        "offset": 11.0
     }, 
     "LHST": {
-        "offset": 10.5, 
-        "string": "+1030"
+        "offset": 10.5
     }, 
     "LINT": {
-        "offset": 14.0, 
-        "string": "+1400"
+        "offset": 14.0
     }, 
     "MAGST": {
-        "offset": 12.0, 
-        "string": "+1200"
+        "offset": 12.0
     }, 
     "MAGT": {
-        "offset": 12.0, 
-        "string": "+1200"
+        "offset": 12.0
     }, 
     "MART": {
-        "offset": -9.5, 
-        "string": "-0930"
+        "offset": -9.5
     }, 
     "MAWT": {
-        "offset": 5.0, 
-        "string": "+0500"
+        "offset": 5.0
     }, 
     "MDT": {
-        "offset": -6.0, 
-        "string": "-0600"
+        "offset": -6.0
     }, 
     "MESZ": {
-        "offset": 2.0, 
-        "string": "+0200"
+        "offset": 2.0
     }, 
     "MEZ": {
-        "offset": 1.0, 
-        "string": "+0100"
+        "offset": 1.0
     }, 
     "MHT": {
-        "offset": 12.0, 
-        "string": "+1200"
+        "offset": 12.0
     }, 
     "MMT": {
-        "offset": 6.5, 
-        "string": "+0630"
+        "offset": 6.5
     }, 
     "MSD": {
-        "offset": 4.0, 
-        "string": "+0400"
+        "offset": 4.0
     }, 
     "MSK": {
-        "offset": 4.0, 
-        "string": "+0400"
+        "offset": 4.0
     }, 
     "MST": {
-        "offset": -7.0, 
-        "string": "-0700"
+        "offset": -7.0
     }, 
     "MUT": {
-        "offset": 4.0, 
-        "string": "+0400"
+        "offset": 4.0
     }, 
     "MVT": {
-        "offset": 5.0, 
-        "string": "+0500"
+        "offset": 5.0
     }, 
     "MYT": {
-        "offset": 8.0, 
-        "string": "+0800"
+        "offset": 8.0
     }, 
     "NCT": {
-        "offset": 11.0, 
-        "string": "+1100"
+        "offset": 11.0
     }, 
     "NDT": {
-        "offset": -2.5, 
-        "string": "-0230"
+        "offset": -2.5
     }, 
     "NFT": {
-        "offset": 11.5, 
-        "string": "+1130"
+        "offset": 11.5
     }, 
     "NOVST": {
-        "offset": 7.0, 
-        "string": "+0700"
+        "offset": 7.0
     }, 
     "NOVT": {
-        "offset": 6.0, 
-        "string": "+0600"
+        "offset": 6.0
     }, 
     "NPT": {
-        "offset": 5.75, 
-        "string": "+0545"
+        "offset": 5.75
     }, 
     "NST": {
-        "offset": -3.5, 
-        "string": "-0330"
+        "offset": -3.5
     }, 
     "NUT": {
-        "offset": -11.0, 
-        "string": "-1100"
+        "offset": -11.0
     }, 
     "NZDT": {
-        "offset": 13.0, 
-        "string": "+1300"
+        "offset": 13.0
     }, 
     "NZST": {
-        "offset": 12.0, 
-        "string": "+1200"
+        "offset": 12.0
     }, 
     "OMSST": {
-        "offset": 7.0, 
-        "string": "+0700"
+        "offset": 7.0
     }, 
     "OMST": {
-        "offset": 7.0, 
-        "string": "+0700"
+        "offset": 7.0
     }, 
     "PDT": {
-        "offset": -7.0, 
-        "string": "-0700"
+        "offset": -7.0
     }, 
     "PET": {
-        "offset": -5.0, 
-        "string": "-0500"
+        "offset": -5.0
     }, 
     "PETST": {
-        "offset": 12.0, 
-        "string": "+1200"
+        "offset": 12.0
     }, 
     "PETT": {
-        "offset": 12.0, 
-        "string": "+1200"
+        "offset": 12.0
     }, 
     "PGT": {
-        "offset": 10.0, 
-        "string": "+1000"
+        "offset": 10.0
     }, 
     "PHOT": {
-        "offset": 13.0, 
-        "string": "+1300"
+        "offset": 13.0
     }, 
     "PHT": {
-        "offset": 8.0, 
-        "string": "+0800"
+        "offset": 8.0
     }, 
     "PKT": {
-        "offset": 5.0, 
-        "string": "+0500"
+        "offset": 5.0
     }, 
     "PMDT": {
-        "offset": -2.0, 
-        "string": "-0200"
+        "offset": -2.0
     }, 
     "PMST": {
-        "offset": -3.0, 
-        "string": "-0300"
+        "offset": -3.0
     }, 
     "PONT": {
-        "offset": 11.0, 
-        "string": "+1100"
+        "offset": 11.0
     }, 
     "PST": {
-        "offset": -8.0, 
-        "string": "-0800"
+        "offset": -8.0
     }, 
     "PT": {
-        "offset": -8.0, 
-        "string": "-0800"
+        "offset": -8.0
     }, 
     "PWT": {
-        "offset": 9.0, 
-        "string": "+0900"
+        "offset": 9.0
     }, 
     "PYST": {
-        "offset": -3.0, 
-        "string": "-0300"
+        "offset": -3.0
     }, 
     "PYT": {
-        "offset": -4.0, 
-        "string": "-0400"
+        "offset": -4.0
     }, 
     "RET": {
-        "offset": 4.0, 
-        "string": "+0400"
+        "offset": 4.0
     }, 
     "SAMT": {
-        "offset": 4.0, 
-        "string": "+0400"
+        "offset": 4.0
     }, 
     "SAST": {
-        "offset": 2.0, 
-        "string": "+0200"
+        "offset": 2.0
     }, 
     "SBT": {
-        "offset": 11.0, 
-        "string": "+1100"
+        "offset": 11.0
     }, 
     "SCT": {
-        "offset": 4.0, 
-        "string": "+0400"
+        "offset": 4.0
     }, 
     "SGT": {
-        "offset": 8.0, 
-        "string": "+0800"
+        "offset": 8.0
     }, 
     "SRT": {
-        "offset": -3.0, 
-        "string": "-0300"
+        "offset": -3.0
     }, 
     "SST": {
-        "offset": -11.0, 
-        "string": "-1100"
+        "offset": -11.0
     }, 
     "TAHT": {
-        "offset": -10.0, 
-        "string": "-1000"
+        "offset": -10.0
     }, 
     "TFT": {
-        "offset": 5.0, 
-        "string": "+0500"
+        "offset": 5.0
     }, 
     "TJT": {
-        "offset": 5.0, 
-        "string": "+0500"
+        "offset": 5.0
     }, 
     "TKT": {
-        "offset": 13.0, 
-        "string": "+1300"
+        "offset": 13.0
     }, 
     "TLT": {
-        "offset": 9.0, 
-        "string": "+0900"
+        "offset": 9.0
     }, 
     "TMT": {
-        "offset": 5.0, 
-        "string": "+0500"
+        "offset": 5.0
     }, 
     "TVT": {
-        "offset": 12.0, 
-        "string": "+1200"
+        "offset": 12.0
     }, 
     "ULAT": {
-        "offset": 8.0, 
-        "string": "+0800"
+        "offset": 8.0
     }, 
     "UYST": {
-        "offset": -2.0, 
-        "string": "-0200"
+        "offset": -2.0
     }, 
     "UYT": {
-        "offset": -3.0, 
-        "string": "-0300"
+        "offset": -3.0
     }, 
     "UZT": {
-        "offset": 5.0, 
-        "string": "+0500"
+        "offset": 5.0
     }, 
     "VET": {
-        "offset": -4.5, 
-        "string": "-0430"
+        "offset": -4.5
     }, 
     "VLAST": {
-        "offset": 11.0, 
-        "string": "+1100"
+        "offset": 11.0
     }, 
     "VLAT": {
-        "offset": 11.0, 
-        "string": "+1100"
+        "offset": 11.0
     }, 
     "VUT": {
-        "offset": 11.0, 
-        "string": "+1100"
+        "offset": 11.0
     }, 
     "WAST": {
-        "offset": 2.0, 
-        "string": "+0200"
+        "offset": 2.0
     }, 
     "WAT": {
-        "offset": 1.0, 
-        "string": "+0100"
+        "offset": 1.0
     }, 
     "WDT": {
-        "offset": 9.0, 
-        "string": "+0900"
+        "offset": 9.0
     }, 
     "WEST": {
-        "offset": 1.0, 
-        "string": "+0100"
+        "offset": 1.0
     }, 
     "WESZ": {
-        "offset": 1.0, 
-        "string": "+0100"
+        "offset": 1.0
     }, 
     "WET": {
-        "offset": 0.0, 
-        "string": "+0000"
+        "offset": 0.0
     }, 
     "WEZ": {
-        "offset": 0.0, 
-        "string": "+0000"
+        "offset": 0.0
     }, 
     "WFT": {
-        "offset": 12.0, 
-        "string": "+1200"
+        "offset": 12.0
     }, 
     "WGST": {
-        "offset": -2.0, 
-        "string": "-0200"
+        "offset": -2.0
     }, 
     "WGT": {
-        "offset": -3.0, 
-        "string": "-0300"
+        "offset": -3.0
     }, 
     "WIB": {
-        "offset": 7.0, 
-        "string": "+0700"
+        "offset": 7.0
     }, 
     "WIT": {
-        "offset": 9.0, 
-        "string": "+0900"
+        "offset": 9.0
     }, 
     "WITA": {
-        "offset": 8.0, 
-        "string": "+0800"
+        "offset": 8.0
     }, 
     "WST": {
-        "offset": 1.0, 
-        "string": "+0100"
+        "offset": 1.0
     }, 
     "WT": {
-        "offset": 0.0, 
-        "string": "+0000"
+        "offset": 0.0
     }, 
     "YAKST": {
-        "offset": 10.0, 
-        "string": "+1000"
+        "offset": 10.0
     }, 
     "YAKT": {
-        "offset": 10.0, 
-        "string": "+1000"
+        "offset": 10.0
     }, 
     "YAPT": {
-        "offset": 10.0, 
-        "string": "+1000"
+        "offset": 10.0
     }, 
     "YEKST": {
-        "offset": 6.0, 
-        "string": "+0600"
+        "offset": 6.0
     }, 
     "YEKT": {
-        "offset": 6.0, 
-        "string": "+0600"
+        "offset": 6.0
     }
 }
