@@ -26,7 +26,7 @@ var hoverStyle = {
 	border: '1px solid #222',
 	padding: '5px',
 	display: 'none',
-	zIndex: 10
+	zIndex: 9999
 };
 
 var generateReplacement = function(oldValue, newValue, type){
@@ -56,7 +56,11 @@ var targetTimezone;
 var parseTime = function(string, zone, separator){
 	separator = separator || ':';
 	var formatString, outputString, common;
-	var offset = timezones[zone];
+	var offsetInputTime = timezones[zone];
+	var offsetTargetTime = timezones[targetTimezone];
+
+	var totalOffset = offsetInputTime.offset - offsetTargetTime.offset;
+	var totalOffsetString = offsetToString(totalOffset);
 
 	// debugger;
 
@@ -69,11 +73,51 @@ var parseTime = function(string, zone, separator){
 	outputString = common;
 	formatString = common + ' Z';
 
-	var parseString = string.substring(0, string.length - 4) + offset.string;
+	var parseString = string.substring(0, string.length - 4) + totalOffsetString;
 	var time = moment(parseString, formatString);
 	var diff = offset - timezones[targetTimezone];
 	time.add('hours', diff);
 	return time.format(outputString) + ' ' + targetTimezone;
+};
+
+
+// Converts something like -13.75 to "-1345" or 5 to "+0500"
+var offsetToString = function(offset){
+	console.log(offset);
+
+	var string = "";
+
+	if(offset < 0){
+		string += "-";
+		offset *= -1;
+	}
+	else{
+		string += "+";
+	}
+
+	if(offset < 10){
+		string += "0";
+	}
+
+	string += Math.floor(offset);
+	offset -= Math.floor(offset);
+
+	if(offset > 0.01){
+		var minutes = Math.round(offset * 60);
+
+		if(minutes < 10){
+			string += "0";
+			string += minutes;
+		}
+		else{
+			string += minutes;
+		}
+	}
+	else{
+		string += "00";
+	}
+	console.log(string);
+	return string;
 };
 
 var targetCurrency, targetSymbol;
