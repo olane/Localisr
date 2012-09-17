@@ -14,7 +14,7 @@
     "content_scripts": [
         {
             "matches": ["http://*/*", "https://*/*"],
-            "js": ["lib/jquery.js", "lib/money.js", "lib/accounting.js", "lib/moment.js"]
+            "js": ["lib/jquery.js", "lib/money.js", "lib/accounting.js", "lib/moment.js", "localisr.js"]
         }
     ],
     "permissions": [

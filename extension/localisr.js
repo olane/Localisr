@@ -274,14 +274,17 @@ var restore = function(element){
 	});
 };
 
-
-var complete;
-
 var init = function(){
-	// debugger;
-	for (var i = 0; i < complete.length; i++) {
-		if(!complete[i]){ return; }
+	var acronyms = [];
+	for(var key in timezones){
+		acronyms.push(key);
 	}
+
+	timezonesString = '(' + acronyms.join('|') + '){1}';
+	timeString = "[0-9]{1,2}\\s*:\\s*[0-9]{2}\\s*((am)|(pm))?\\s*" + timezonesString;
+	timezonesRegex = new RegExp(timezonesString, 'g');
+	timeRegex = new RegExp(start + timeString + end, 'gi');
+	timeReplaceRegex = new RegExp(timeString, 'gi');
 
 	targetSymbol = acronymMap[targetCurrency] || targetCurrency + ' ';
 	money.base = 'USD';
@@ -302,51 +305,24 @@ var init = function(){
 	});
 };
 
-// If the page is in a converted state then restore the original
-if(Localisr.isConverted){
-	Localisr.isConverted = false;
-	restore('body');
-}
-// Otherwise convert it
-else {
-	Localisr.isConverted = true;
-	complete = [false, false, false];
-
-	chrome.extension.sendMessage(
-		{method: 'getExchangeRates'},
-		function(exchangeRates){
-			money.rates = exchangeRates.rates;
-			complete[0] = true;
-			init();
-		}
-	);
-	chrome.extension.sendMessage(
-		{method: 'getLocaleSettings'},
-		function(settings){
-			targetCurrency = settings.currency || 'AED';
-			targetTimezone = settings.timezone || 'UTC';
-			complete[1] = true;
-			init();
-		}
-	);
-	chrome.extension.sendMessage(
-		{method: 'getTimezones'},
-		function(tz){
-			timezones = tz;
-			var acronyms = [];
-			for(var key in timezones){
-				acronyms.push(key);
+chrome.extension.onMessage.addListener(
+	function(request, sender, sendResponse){
+		if(request.method === "run"){
+			// If the page is in a converted state then restore the original
+			if(request.isConverted){
+				restore('body');
 			}
+			// Otherwise convert it
+			else {
+				money.rates = request.rates;
+				targetCurrency = request.currency || 'AED';
+				targetTimezone = request.timezone || 'UTC';
+				timezones = request.timezones;
 
-			timezonesString = '(' + acronyms.join('|') + '){1}';
-			timeString = "[0-9]{1,2}\\s*:\\s*[0-9]{2}\\s*((am)|(pm))?\\s*" + timezonesString;
-			timezonesRegex = new RegExp(timezonesString, 'g');
-			timeRegex = new RegExp(start + timeString + end, 'gi');
-			timeReplaceRegex = new RegExp(timeString, 'gi');
-			complete[2] = true;
-			init();
+				init();
+			}
 		}
-	);
-}
+	}
+);
 
 }());
