@@ -89,22 +89,6 @@ chrome.browserAction.onClicked.addListener(function(tab){
     runScript(tab.id);
 });
 
-// Or if they visit a page that matches the list of URLs in the settings
-// chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab){
-//     currentURL = changeInfo.url || currentURL;
-//     var urls = localStorage.alwaysrun;
-//     if(!urls){ return; }
-//     urls = urls.split('\n');
-
-//     for(var i = 0; i < urls.length; i++){
-//         var url = urls[i];
-//         if(url && currentURL && currentURL.match(new RegExp(url))){
-//             runScript(tab.id);
-//             return;
-//         }
-//     }
-// });
-
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
     switch(request.method){
         case 'getLocalStorage':
