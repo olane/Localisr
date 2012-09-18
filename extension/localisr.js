@@ -307,7 +307,7 @@ var init = function(){
 
 chrome.extension.onMessage.addListener(
 	function(request, sender, sendResponse){
-		if(request.method === "run"){
+		if(request.method === 'run'){
 			// If the page is in a converted state then restore the original
 			if(request.isConverted){
 				restore('body');
@@ -324,5 +324,20 @@ chrome.extension.onMessage.addListener(
 		}
 	}
 );
+
+chrome.extension.sendMessage({method: 'getAutoRunURLs'}, function(urls){
+	if(!urls){ return; }
+	urls = urls.split('\n');
+	console.log(urls);
+	// debugger;
+
+	for(var i = 0; i < urls.length; i++){
+		var url = urls[i];
+		if(url && window.location.href.match(new RegExp(url))){
+			chrome.extension.sendMessage({method: 'runScript'});
+			return;
+		}
+	}
+});
 
 }());
