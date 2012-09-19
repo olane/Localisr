@@ -1,11 +1,23 @@
 (function(){
 
-// Set up a global object to store persistent properties
-window.Localisr = window.Localisr || {};
-
-// Regexes for the beginning and end of a price or time
-var start = "(^|\\s)+";
-var end = "($|\\s)+";
+// Regular expressions
+var r = {
+	// Common snippets used in many regular expressions
+	base: {
+		start : "(^|\\s)+",
+		end : "($|\\s)+"
+	},
+	// RegExp objects
+	regexp: {
+		time: {},
+		price: {}
+	},
+	// String versions
+	string: {
+		time: {},
+		price: {}
+	}
+};
 
 var invert = function(obj){
 	var new_obj = {};
@@ -51,18 +63,16 @@ var timezonesRegex;
 var timeRegex;
 var timeReplaceRegex;
 
+r.string.time.separators = '(' + [':'].join('|') + '){1}';
+r.regexp.time.separators = new RegExp(r.string.time.separators);
+
 var targetTimezone;
 
-var parseTime = function(string, zone, separator){
+var parseTimeWithMinutes = function(string, zone, separator){
 	separator = separator || ':';
 	var formatString, outputString, common;
-	var offsetInputTime = timezones[zone];
-	var offsetTargetTime = timezones[targetTimezone];
 
-	var totalOffset = offsetInputTime.offset - offsetTargetTime.offset;
-	var totalOffsetString = offsetToString(totalOffset);
-
-	// debugger;
+	var totalOffsetString = zoneToOffsetString(zone);
 
 	if(string.match(/am|pm/i)){
 		common = 'hh' + separator + 'mm a';
@@ -70,33 +80,61 @@ var parseTime = function(string, zone, separator){
 	else{
 		common = 'HH' + separator + 'mm';
 	}
-	outputString = common;
-	formatString = common + ' Z';
 
-	var parseString = string.substring(0, string.length - 4) + totalOffsetString;
-	var time = moment(parseString, formatString);
-	// var diff = offset - timezones[targetTimezone];
-	// time.add('hours', diff);
-	return time.format(outputString) + ' ' + targetTimezone;
+	return convertTimeString(string, totalOffsetString, common);
+};
+
+var parseTime = function(string, zone){
+	var formatString, outputString, common;
+
+	var totalOffsetString = zoneToOffsetString(zone);
+
+	if(string.match(/am|pm/i)){
+		common = 'hh a';
+	}
+	else{
+		common = 'HH';
+	}
+	return convertTimeString(string, totalOffsetString, common);
+};
+
+// Convert a time string to the user's target time
+// Arguments:
+//   - string: The time string parsed from the webpage eg. "10:32 am GMT"
+//   - offset: An offset string eg. "+0500"
+//   - format: The format of the time string eg. "HH mm"
+var convertTimeString = function(string, offset, format){
+	var parse = string.substring(0, string.length - 4) + offset;
+	var time = moment(parse, format + ' Z');
+	return time.format(format) + ' ' + targetTimezone;
+};
+
+// Convert a zone to an offset string
+// Arguments:
+//   - zone: A three letter acronym representing the timezone of the time being converted
+// Returns: A string representing the difference between the offset of `zone` and the user's target timezone
+var zoneToOffsetString = function(zone){
+	var offsetInputTime = timezones[zone.toUpperCase()];
+	var offsetTargetTime = timezones[targetTimezone];
+
+	return offsetToString(offsetInputTime.offset - offsetTargetTime.offset);
 };
 
 
 // Converts something like -13.75 to "-1345" or 5 to "+0500"
 var offsetToString = function(offset){
-	// console.log(offset);
-
-	var string = "";
+	var string = '';
 
 	if(offset < 0){
-		string += "-";
+		string += '-';
 		offset *= -1;
 	}
 	else{
-		string += "+";
+		string += '+';
 	}
 
 	if(offset < 10){
-		string += "0";
+		string += '0';
 	}
 
 	string += Math.floor(offset);
@@ -106,17 +144,14 @@ var offsetToString = function(offset){
 		var minutes = Math.round(offset * 60);
 
 		if(minutes < 10){
-			string += "0";
-			string += minutes;
+			string += '0';
 		}
-		else{
-			string += minutes;
-		}
+		string += minutes;
+
 	}
 	else{
-		string += "00";
+		string += '00';
 	}
-	// console.log(string);
 	return string;
 };
 
@@ -147,7 +182,7 @@ var types = "(" + currencies.join('|') + "){1}";
 var commonString = types + "\\s*" + basePriceRegex;
 
 // Regex used for determining whether there is a price in a string
-var matchRegex = new RegExp(start + commonString + end, 'g');
+var matchRegex = new RegExp(r.base.start + commonString + r.base.end, 'g');
 // Regex for replacing the price in the string
 var replaceRegex = new RegExp(commonString, 'g');
 var typeRegex = new RegExp(types, 'g');
@@ -187,14 +222,13 @@ var convertPrice = function(string, type){
 // Recursively scans an element and all of its children, and tries to convert the times and prices
 // in all the text nodes.
 var scan = function(element){
-	// debugger;
 	$(element).contents().each(function(index){
 		if(this.nodeType === 3){
 			// The node is a text node so it can be parsed for currencies
 			var text = this.textContent;
 			var oldText = text;
 
-			var containsCurrency = false;
+			var replaced = false;
 			var matches = text.match(matchRegex);
 			var typeMatches = text.match(typeRegex);
 
@@ -204,9 +238,8 @@ var scan = function(element){
 				replacements = text.match(replaceRegex);
 
 				for(i = 0; i < matches.length; i++){
-					// debugger;
 					if(!(matches[i] && typeMatches[i])){ break; }
-					containsCurrency = true;
+					replaced = true;
 
 					// Extract a string containing just the numerical price from the text
 					var oldPrice = matches[i];
@@ -220,33 +253,42 @@ var scan = function(element){
 				}
 			}
 
-			var containsTimes = false;
 			var timeMatches = text.match(timeRegex);
 
 			if(timeMatches){
 				replacements = text.match(timeReplaceRegex);
 				var tz = text.match(timezonesRegex);
-				// debugger;
+
 				for(i = 0; i < timeMatches.length; i++){
 					if(!timeMatches[i]){ break; }
-					containsTimes = true;
 
 					var oldTime = timeMatches[i];
-					var newTime = parseTime(oldTime, tz[i]);
+					var newTime;
+					if(oldTime.match(r.regexp.time.separators)){
+						newTime = parseTimeWithMinutes(oldTime, tz[i]);
+					}
+					else{
+						// debugger;
+						newTime = parseTime(oldTime, tz[i]);
+					}
+
 					if(newTime !== null){
 						text = text.replace(replacements[i], generateReplacement(oldTime, newTime, 'time'));
+						replaced = true;
 					}
 				}
 			}
 
 			// If any replacements have been made, replace the text node with a span element containing the converted text
-			if(containsCurrency || containsTimes){
-				var replacement = $('<span>');
-				replacement.attr('data-original-text', oldText);
-				replacement.html(text);
+			if(replaced){
+				var replacement = $('<span>')
+					.attr('data-original-text', oldText)
+					.html(text);
+
 				$(this).replaceWith(replacement);
 			}
 		}
+
 		else if(this.nodeType === 1 && this.nodeName.toLowerCase() !== 'iframe'){
 			// The node is a normal element so recursively scan it for more text nodes
 			scan(this);
@@ -281,9 +323,13 @@ var init = function(){
 	}
 
 	timezonesString = '(' + acronyms.join('|') + '){1}';
-	timeString = "[0-9]{1,2}\\s*:\\s*[0-9]{2}\\s*((am)|(pm))?\\s*" + timezonesString;
-	timezonesRegex = new RegExp(timezonesString, 'g');
-	timeRegex = new RegExp(start + timeString + end, 'gi');
+	timeString = "[0-9]{1,2}" + // One or two digits
+		"(\\s*" + r.string.time.separators + "\\s*[0-9]{2}\\s*)?" + // All or none of: one separator then two digits, optionally separated by whitespace
+		"((am)|(pm))?\\s*" + // Optional AM/PM
+		timezonesString; // One of the timezone acronyms
+
+	timezonesRegex = new RegExp(timezonesString, 'gi');
+	timeRegex = new RegExp(r.base.start + timeString + r.base.end, 'gi');
 	timeReplaceRegex = new RegExp(timeString, 'gi');
 
 	targetSymbol = acronymMap[targetCurrency] || targetCurrency + ' ';
@@ -328,8 +374,6 @@ chrome.extension.onMessage.addListener(
 chrome.extension.sendMessage({method: 'getAutoRunURLs'}, function(urls){
 	if(!urls){ return; }
 	urls = urls.split('\n');
-	console.log(urls);
-	// debugger;
 
 	for(var i = 0; i < urls.length; i++){
 		var url = urls[i];

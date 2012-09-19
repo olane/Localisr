@@ -1,11 +1,23 @@
 (function(){
 
-// Set up a global object to store persistent properties
-window.Localisr = window.Localisr || {};
-
-// Regexes for the beginning and end of a price or time
-var start = "(^|\\s)+";
-var end = "($|\\s)+";
+// Regular expressions
+var r = {
+	// Common snippets used in many regular expressions
+	base: {
+		start : "(^|\\s)+",
+		end : "($|\\s)+"
+	},
+	// RegExp objects
+	regexp: {
+		time: {},
+		price: {}
+	},
+	// String versions
+	string: {
+		time: {},
+		price: {}
+	}
+};
 
 var invert = function(obj){
 	var new_obj = {};

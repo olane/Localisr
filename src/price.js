@@ -25,7 +25,7 @@ var types = "(" + currencies.join('|') + "){1}";
 var commonString = types + "\\s*" + basePriceRegex;
 
 // Regex used for determining whether there is a price in a string
-var matchRegex = new RegExp(start + commonString + end, 'g');
+var matchRegex = new RegExp(r.base.start + commonString + r.base.end, 'g');
 // Regex for replacing the price in the string
 var replaceRegex = new RegExp(commonString, 'g');
 var typeRegex = new RegExp(types, 'g');

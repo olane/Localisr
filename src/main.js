@@ -1,14 +1,13 @@
 // Recursively scans an element and all of its children, and tries to convert the times and prices
 // in all the text nodes.
 var scan = function(element){
-	// debugger;
 	$(element).contents().each(function(index){
 		if(this.nodeType === 3){
 			// The node is a text node so it can be parsed for currencies
 			var text = this.textContent;
 			var oldText = text;
 
-			var containsCurrency = false;
+			var replaced = false;
 			var matches = text.match(matchRegex);
 			var typeMatches = text.match(typeRegex);
 
@@ -18,9 +17,8 @@ var scan = function(element){
 				replacements = text.match(replaceRegex);
 
 				for(i = 0; i < matches.length; i++){
-					// debugger;
 					if(!(matches[i] && typeMatches[i])){ break; }
-					containsCurrency = true;
+					replaced = true;
 
 					// Extract a string containing just the numerical price from the text
 					var oldPrice = matches[i];
@@ -34,33 +32,42 @@ var scan = function(element){
 				}
 			}
 
-			var containsTimes = false;
 			var timeMatches = text.match(timeRegex);
 
 			if(timeMatches){
 				replacements = text.match(timeReplaceRegex);
 				var tz = text.match(timezonesRegex);
-				// debugger;
+
 				for(i = 0; i < timeMatches.length; i++){
 					if(!timeMatches[i]){ break; }
-					containsTimes = true;
 
 					var oldTime = timeMatches[i];
-					var newTime = parseTime(oldTime, tz[i]);
+					var newTime;
+					if(oldTime.match(r.regexp.time.separators)){
+						newTime = parseTimeWithMinutes(oldTime, tz[i]);
+					}
+					else{
+						// debugger;
+						newTime = parseTime(oldTime, tz[i]);
+					}
+
 					if(newTime !== null){
 						text = text.replace(replacements[i], generateReplacement(oldTime, newTime, 'time'));
+						replaced = true;
 					}
 				}
 			}
 
 			// If any replacements have been made, replace the text node with a span element containing the converted text
-			if(containsCurrency || containsTimes){
-				var replacement = $('<span>');
-				replacement.attr('data-original-text', oldText);
-				replacement.html(text);
+			if(replaced){
+				var replacement = $('<span>')
+					.attr('data-original-text', oldText)
+					.html(text);
+
 				$(this).replaceWith(replacement);
 			}
 		}
+
 		else if(this.nodeType === 1 && this.nodeName.toLowerCase() !== 'iframe'){
 			// The node is a normal element so recursively scan it for more text nodes
 			scan(this);
@@ -95,9 +102,13 @@ var init = function(){
 	}
 
 	timezonesString = '(' + acronyms.join('|') + '){1}';
-	timeString = "[0-9]{1,2}\\s*:\\s*[0-9]{2}\\s*((am)|(pm))?\\s*" + timezonesString;
-	timezonesRegex = new RegExp(timezonesString, 'g');
-	timeRegex = new RegExp(start + timeString + end, 'gi');
+	timeString = "[0-9]{1,2}" + // One or two digits
+		"(\\s*" + r.string.time.separators + "\\s*[0-9]{2}\\s*)?" + // All or none of: one separator then two digits, optionally separated by whitespace
+		"((am)|(pm))?\\s*" + // Optional AM/PM
+		timezonesString; // One of the timezone acronyms
+
+	timezonesRegex = new RegExp(timezonesString, 'gi');
+	timeRegex = new RegExp(r.base.start + timeString + r.base.end, 'gi');
 	timeReplaceRegex = new RegExp(timeString, 'gi');
 
 	targetSymbol = acronymMap[targetCurrency] || targetCurrency + ' ';
@@ -142,8 +153,6 @@ chrome.extension.onMessage.addListener(
 chrome.extension.sendMessage({method: 'getAutoRunURLs'}, function(urls){
 	if(!urls){ return; }
 	urls = urls.split('\n');
-	console.log(urls);
-	// debugger;
 
 	for(var i = 0; i < urls.length; i++){
 		var url = urls[i];

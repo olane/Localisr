@@ -1,7 +1,7 @@
 var cacheAge = 60 * 60; // seconds
 var timezones;
 var tabsConverted = {};
-var currentURL = "";
+var currentURL = '';
 
 // Load the exchange rates from the API and save them to localStorage
 var loadExchangeRates = function(){
