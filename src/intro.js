@@ -19,6 +19,7 @@ var r = {
 	}
 };
 
+// Swaps the keys and values of an object
 var invert = function(obj){
 	var new_obj = {};
 
@@ -31,6 +32,7 @@ var invert = function(obj){
 	return new_obj;
 };
 
+// The CSS styles for the boxes that show the original value on mouseover
 var hoverStyle = {
 	position: 'absolute',
 	left: 0,
@@ -41,6 +43,7 @@ var hoverStyle = {
 	zIndex: 9999
 };
 
+// Returns at html string to replace a converted time or price with
 var generateReplacement = function(oldValue, newValue, type){
 	var hover = $('<span>')
 		.addClass('converted-value-hover')

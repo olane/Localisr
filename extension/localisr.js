@@ -19,6 +19,7 @@ var r = {
 	}
 };
 
+// Swaps the keys and values of an object
 var invert = function(obj){
 	var new_obj = {};
 
@@ -31,6 +32,7 @@ var invert = function(obj){
 	return new_obj;
 };
 
+// The CSS styles for the boxes that show the original value on mouseover
 var hoverStyle = {
 	position: 'absolute',
 	left: 0,
@@ -41,6 +43,7 @@ var hoverStyle = {
 	zIndex: 9999
 };
 
+// Returns at html string to replace a converted time or price with
 var generateReplacement = function(oldValue, newValue, type){
 	var hover = $('<span>')
 		.addClass('converted-value-hover')
@@ -253,26 +256,40 @@ var scan = function(element){
 				}
 			}
 
+			// Get an array of every substring in the current text node that is a valid time with a timezone acronym
 			var timeMatches = text.match(timeRegex);
 
+			// If there are any matches
 			if(timeMatches){
+				// Get an array of substrings from the current text node to replace with the converted time
+				// This is the same as the array of matches but without trailing / leading whitespace so whitespace doesn't get replaced
 				replacements = text.match(timeReplaceRegex);
-				var tz = text.match(timezonesRegex);
 
+				// Loop through the array of matched times to convert them
 				for(i = 0; i < timeMatches.length; i++){
+					// string.match() sometimes returns empty strings or undefined, so ignore these
 					if(!timeMatches[i]){ break; }
 
+					// Store the original time
 					var oldTime = timeMatches[i];
+					// Extract just the timezone acronym from the time string
+					var timezone = oldTime.match(timezonesRegex)[0];
+					// Don't convert values that are already in the user's target timezone
+					if(timezone.toUpperCase() === targetTimezone){ break; }
+
 					var newTime;
+					// If the time string matched the regex and has a separator character in it, it must also have minutes
 					if(oldTime.match(r.regexp.time.separators)){
-						newTime = parseTimeWithMinutes(oldTime, tz[i]);
+						newTime = parseTimeWithMinutes(oldTime, timezone);
 					}
+					// Otherwise it's just got hours
 					else{
-						// debugger;
-						newTime = parseTime(oldTime, tz[i]);
+						newTime = parseTime(oldTime, timezone);
 					}
 
+					// Don't perform the replacement if the conversion failed
 					if(newTime !== null){
+						// Replace the current occurence of a time in the text node with a html string replacement for the converted time and popup box
 						text = text.replace(replacements[i], generateReplacement(oldTime, newTime, 'time'));
 						replaced = true;
 					}
