@@ -160,12 +160,11 @@ var offsetToString = function(offset){
 
 var targetCurrency, targetSymbol;
 
-var acronyms = ['AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 'BAM', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', 'BSD', 'BTN', 'BWP', 'BYR', 'BZD', 'CAD', 'CDF', 'CHF', 'CLF', 'CLP', 'CNY', 'COP', 'CRC', 'CUP', 'CVE', 'CZK', 'DJF', 'DKK', 'DOP', 'DZD', 'EGP', 'ETB', 'EUR', 'FJD', 'FKP', 'GBP', 'GEL', 'GHS', 'GIP', 'GMD', 'GNF', 'GTQ', 'GYD', 'HKD', 'HNL', 'HRK', 'HTG', 'HUF', 'IDR', 'ILS', 'INR', 'IQD', 'IRR', 'ISK', 'JMD', 'JOD', 'JPY', 'KES', 'KGS', 'KHR', 'KMF', 'KPW', 'KRW', 'KWD', 'KZT', 'LAK', 'LBP', 'LKR', 'LRD', 'LSL', 'LTL', 'LVL', 'LYD', 'MAD', 'MDL', 'MGA', 'MKD', 'MMK', 'MNT', 'MOP', 'MRO', 'MUR', 'MVR', 'MWK', 'MXN', 'MYR', 'MZN', 'NAD', 'NGN', 'NIO', 'NOK', 'NPR', 'NZD', 'OMR', 'PAB', 'PEN', 'PGK', 'PHP', 'PKR', 'PLN', 'PYG', 'QAR', 'RON', 'RSD', 'RUB', 'RWF', 'SAR', 'SBD', 'SCR', 'SDG', 'SEK', 'SGD', 'SHP', 'SLL', 'SOS', 'SRD', 'STD', 'SVC', 'SYP', 'SZL', 'THB', 'TJS', 'TMT', 'TND', 'TOP', 'TRY', 'TTD', 'TWD', 'TZS', 'UAH', 'UGX', 'USD', 'UYU', 'UZS', 'VEF', 'VND', 'VUV', 'WST', 'XAF', 'XCD', 'XDR', 'XOF', 'XPF', 'YER', 'ZAR', 'ZMK', 'ZWL'];
+var acronyms = 'AED,AFN,ALL,AMD,ANG,AOA,ARS,AUD,AWG,AZN,BAM,BBD,BDT,BGN,BHD,BIF,BMD,BND,BOB,BRL,BSD,BTN,BWP,BYR,BZD,CAD,CDF,CHF,CLF,CLP,CNY,COP,CRC,CUP,CVE,CZK,DJF,DKK,DOP,DZD,EGP,ETB,EUR,FJD,FKP,GBP,GEL,GHS,GIP,GMD,GNF,GTQ,GYD,HKD,HNL,HRK,HTG,HUF,IDR,ILS,INR,IQD,IRR,ISK,JMD,JOD,JPY,KES,KGS,KHR,KMF,KPW,KRW,KWD,KZT,LAK,LBP,LKR,LRD,LSL,LTL,LVL,LYD,MAD,MDL,MGA,MKD,MMK,MNT,MOP,MRO,MUR,MVR,MWK,MXN,MYR,MZN,NAD,NGN,NIO,NOK,NPR,NZD,OMR,PAB,PEN,PGK,PHP,PKR,PLN,PYG,QAR,RON,RSD,RUB,RWF,SAR,SBD,SCR,SDG,SEK,SGD,SHP,SLL,SOS,SRD,STD,SVC,SYP,SZL,THB,TJS,TMT,TND,TOP,TRY,TTD,TWD,TZS,UAH,UGX,USD,UYU,UZS,VEF,VND,VUV,WST,XAF,XCD,XDR,XOF,XPF,YER,ZAR,ZMK,ZWL'.split(',');
 var symbols = ['£', '€', '¥', '$'];
 var currencies = [];
 var i;
 
-var basePriceRegex = "[0-9]+\\.?([0-9]{2})?";
 
 // Set up currencies list using acronyms and symbols.
 for(i = 0; i < acronyms.length; i++){
@@ -180,15 +179,16 @@ for(i = 0; i < symbols.length; i++){
 	currencies.push(symbol);
 }
 
+r.base.price = "[0-9]+\\.?([0-9]{2})?";
 // Characters used for both matching and replacing
-var types = "(" + currencies.join('|') + "){1}";
-var commonString = types + "\\s*" + basePriceRegex;
+r.string.price.currencies = "(" + currencies.join('|') + "){1}";
+var commonString = r.string.price.currencies + "\\s*" + r.base.price;
 
 // Regex used for determining whether there is a price in a string
-var matchRegex = new RegExp(r.base.start + commonString + r.base.end, 'g');
+r.regexp.price.matcher = new RegExp(r.base.start + commonString + r.base.end, 'g');
 // Regex for replacing the price in the string
-var replaceRegex = new RegExp(commonString, 'g');
-var typeRegex = new RegExp(types, 'g');
+r.regexp.price.replacer = new RegExp(commonString, 'g');
+r.regexp.price.currencies = new RegExp(r.string.price.currencies, 'g');
 
 var symbolMap = {
 	'£': 'GBP',
@@ -200,19 +200,21 @@ var symbolMap = {
 var acronymMap = invert(symbolMap);
 
 
-// Takes a string representing a foreign price, and a type for the foreign currency,
-// and returns a string representing the price in the user's target currency.
-var convertPrice = function(string, type){
+// Arguments:
+//   - string: A string representing a foreign price, eg. £123.45
+//   - currency: A string representing a currency, either a symbol like £ or a three letter acronym like GBP
+// Returns: A string representing the price in the user's target currency.
+var convertPrice = function(string, currency){
 	var acronym;
 	// Convert symbol to acronym if that was what was passed
-	if(acronyms.indexOf(type) !== -1){
-		acronym = type;
+	if(acronyms.indexOf(currency) !== -1){
+		acronym = currency;
 	}
-	else if(symbols.indexOf(type) !== -1){
-		acronym = symbolMap[type];
+	else if(symbols.indexOf(currency) !== -1){
+		acronym = symbolMap[currency];
 	}
 	else{
-		throw new Error("Invalid currency type " + type);
+		throw new Error("Invalid currency string: " + currency);
 	}
 
 	var price = accounting.unformat(string);
@@ -222,9 +224,8 @@ var convertPrice = function(string, type){
 	return newPriceString;
 };
 
-// Recursively scans an element and all of its children, and tries to convert the times and prices
-// in all the text nodes.
-var scan = function(element){
+// Converts any price and time strings in any text nodes in the element, then recursively converts any child elements
+var convert = function(element){
 	$(element).contents().each(function(index){
 		if(this.nodeType === 3){
 			// The node is a text node so it can be parsed for currencies
@@ -232,24 +233,23 @@ var scan = function(element){
 			var oldText = text;
 
 			var replaced = false;
-			var matches = text.match(matchRegex);
-			var typeMatches = text.match(typeRegex);
+			var priceMatches = text.match(r.regexp.price.matcher);
 
 			var replacements, i;
 
-			if(matches && typeMatches){
-				replacements = text.match(replaceRegex);
+			if(priceMatches){
+				replacements = text.match(r.regexp.price.replacer);
 
-				for(i = 0; i < matches.length; i++){
-					if(!(matches[i] && typeMatches[i])){ break; }
+				for(i = 0; i < priceMatches.length; i++){
+					if(!priceMatches[i]){ break; }
 					replaced = true;
 
 					// Extract a string containing just the numerical price from the text
-					var oldPrice = matches[i];
+					var oldPrice = priceMatches[i];
 
-					var type = typeMatches[i];
+					var currency = oldPrice.match(r.regexp.price.currencies)[0];
 					// Convert them to the user's currency
-					var newPrice = convertPrice(oldPrice, type);
+					var newPrice = convertPrice(oldPrice, currency);
 
 					// Replace the old price string with the new one
 					text = text.replace(replacements[i], generateReplacement(oldPrice, newPrice, 'price'));
@@ -308,7 +308,7 @@ var scan = function(element){
 
 		else if(this.nodeType === 1 && this.nodeName.toLowerCase() !== 'iframe'){
 			// The node is a normal element so recursively scan it for more text nodes
-			scan(this);
+			convert(this);
 		}
 	});
 };
@@ -316,29 +316,41 @@ var scan = function(element){
 
 // Recursively restores an element and all its children to previous values after conversion
 var restore = function(element){
+	// Loop through all child nodes of the element
 	$(element).contents().each(function(index){
-		if(this.nodeType === 1 && this.nodeName.toLowerCase() !== 'iframe'){
-			if(this.nodeName.toLowerCase() === 'span'){
+		var nodeName = this.nodeName.toLowerCase();
+		// If the node is a DOM element (not a text node) and not an iframe (due to cross-domain security restrictions)
+		if(this.nodeType === 1 && nodeName !== 'iframe'){
+
+			// If the node is a span node
+			if(nodeName === 'span'){
 				var t = $(this);
 				var originalText = t.attr('data-original-text');
+
+				// and is a converted time or price
 				if(originalText){
+					// Replace the span node with a text node contaning the original text from before the conversion
 					var replacement = document.createTextNode(originalText);
-					$(this).replaceWith(replacement);
+					t.replaceWith(replacement);
 					return;
 				}
 			}
 
+			// Otherwise call recursively to restore any children of this node to their original state
 			restore(this);
 		}
 	});
 };
 
 var init = function(){
+	// Create an array of timezone acronym strings from the keys of zones.json
 	var acronyms = [];
 	for(var key in timezones){
 		acronyms.push(key);
 	}
 
+	// Build the time manipulation regexes from that array
+	// TODO: move this to time.js
 	timezonesString = '(' + acronyms.join('|') + '){1}';
 	timeString = "[0-9]{1,2}" + // One or two digits
 		"(\\s*" + r.string.time.separators + "\\s*[0-9]{2}\\s*)?" + // All or none of: one separator then two digits, optionally separated by whitespace
@@ -349,11 +361,14 @@ var init = function(){
 	timeRegex = new RegExp(r.base.start + timeString + r.base.end, 'gi');
 	timeReplaceRegex = new RegExp(timeString, 'gi');
 
+	// If the user's target currency has a symbol then use it, otherwise use the acronym as the symbol
 	targetSymbol = acronymMap[targetCurrency] || targetCurrency + ' ';
 	money.base = 'USD';
 
-	scan('body');
+	// Convert all the times and prices on the page
+	convert('body');
 
+	// Bind the mouse events for the 'original value' popups
 	$('.converted-value')
 		.on('mouseenter', function(){
 			$(this).find('.converted-value-hover').show();
@@ -362,12 +377,14 @@ var init = function(){
 			$(this).find('.converted-value-hover').hide();
 		});
 
+	// Set the position of the popups
 	$('.converted-value-hover').each(function(){
 		var t = $(this);
 		t.css('bottom', -(t.height() + 10));
 	});
 };
 
+// Triggered when a message is sent from the background script containing the data needed to convert the page
 chrome.extension.onMessage.addListener(
 	function(request, sender, sendResponse){
 		if(request.method === 'run'){
@@ -388,12 +405,14 @@ chrome.extension.onMessage.addListener(
 	}
 );
 
+// Check if the current page's URL matches the user's list of URLs on which the extension should automatically run
 chrome.extension.sendMessage({method: 'getAutoRunURLs'}, function(urls){
 	if(!urls){ return; }
 	urls = urls.split('\n');
 
 	for(var i = 0; i < urls.length; i++){
 		var url = urls[i];
+		// If it matches, send a request to the background script to pass the necessary data to convert the page
 		if(url && window.location.href.match(new RegExp(url))){
 			chrome.extension.sendMessage({method: 'runScript'});
 			return;

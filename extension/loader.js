@@ -22,9 +22,9 @@ var loadExchangeRates = function(){
     // Load and save the latest data
     if(needsLoad){
         $.ajax({
-            url: "http://openexchangerates.org/api/latest.json",
+            url: 'http://openexchangerates.org/api/latest.json',
             data: {
-                app_id: "73f701531dc640fb8ec624faf83ee842"
+                app_id: '73f701531dc640fb8ec624faf83ee842'
             },
             async: false,
             success: function(data){
@@ -91,15 +91,18 @@ chrome.browserAction.onClicked.addListener(function(tab){
 
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
     switch(request.method){
+        // Generic method for passing localStorage data to content scripts
         case 'getLocalStorage':
-            sendResponse({data: localStorage[request.key]});
+            sendResponse(localStorage[request.key]);
             break;
 
+        // Sends the list of URLs on which the script is run automatically to the content script
         case 'getAutoRunURLs':
             var urls = localStorage.alwaysrun || null;
             sendResponse(urls);
             break;
 
+        // Triggered by the content script to cause the page to be converted
         case 'runScript':
             chrome.tabs.getSelected(null, function(tab){
                 tabsConverted[tab.id.toString()] = false;
@@ -107,6 +110,7 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
             });
             break;
 
+        // Send no data if an invalid method is used
         default:
             sendResponse({});
             break;
