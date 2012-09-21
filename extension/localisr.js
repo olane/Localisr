@@ -268,14 +268,14 @@ var convert = function(element){
 				// Loop through the array of matched times to convert them
 				for(i = 0; i < timeMatches.length; i++){
 					// string.match() sometimes returns empty strings or undefined, so ignore these
-					if(!timeMatches[i]){ break; }
+					if(!timeMatches[i]){ continue; }
 
 					// Store the original time
 					var oldTime = timeMatches[i];
 					// Extract just the timezone acronym from the time string
 					var timezone = oldTime.match(timezonesRegex)[0];
 					// Don't convert values that are already in the user's target timezone
-					if(timezone.toUpperCase() === targetTimezone){ break; }
+					if(timezone.toUpperCase() === targetTimezone){ continue; }
 
 					var newTime;
 					// If the time string matched the regex and has a separator character in it, it must also have minutes
