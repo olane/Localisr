@@ -32,6 +32,15 @@ var invert = function(obj){
 	return new_obj;
 };
 
+// Creates an array of strings from the keys of an object
+var arrayOfKeys = function(obj){
+	var array = [];
+	for(var key in obj){
+		array.push(key);
+	}
+	return array;
+};
+
 // The CSS styles for the boxes that show the original value on mouseover
 var hoverStyle = {
 	position: 'absolute',

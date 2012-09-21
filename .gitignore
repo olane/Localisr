@@ -164,3 +164,4 @@ pip-log.txt
 
 # Other
 *.zip
+node_modules

@@ -118,26 +118,15 @@ var restore = function(element){
 
 var init = function(){
 	// Create an array of timezone acronym strings from the keys of zones.json
-	var acronyms = [];
-	for(var key in timezones){
-		acronyms.push(key);
-	}
+	timeAcronyms = arrayOfKeys(timezones);
 
-	// Build the time manipulation regexes from that array
-	// TODO: move this to time.js
-	timezonesString = '(' + acronyms.join('|') + '){1}';
-	timeString = "[0-9]{1,2}" + // One or two digits
-		"(\\s*" + r.string.time.separators + "\\s*[0-9]{2}\\s*)?" + // All or none of: one separator then two digits, optionally separated by whitespace
-		"((am)|(pm))?\\s*" + // Optional AM/PM
-		timezonesString; // One of the timezone acronyms
+	currencyAcronyms = arrayOfKeys(money.rates);
 
-	timezonesRegex = new RegExp(timezonesString, 'gi');
-	timeRegex = new RegExp(r.base.start + timeString + r.base.end, 'gi');
-	timeReplaceRegex = new RegExp(timeString, 'gi');
+	setupCurrencies();
+	setupTimes();
 
 	// If the user's target currency has a symbol then use it, otherwise use the acronym as the symbol
 	targetSymbol = acronymMap[targetCurrency] || targetCurrency + ' ';
-	money.base = 'USD';
 
 	// Convert all the times and prices on the page
 	convert('body');

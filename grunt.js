@@ -16,6 +16,9 @@ module.exports = function(grunt) {
         qunit: {
             files: []
         },
+        jasmine: {
+            all: ['specs/specrunner.html']
+        },
         concat: {
             dist: {
                 src: [
@@ -66,5 +69,6 @@ module.exports = function(grunt) {
     });
 
     // Default task.
-    grunt.registerTask('default', 'concat lint min');
+    grunt.registerTask('default', 'concat lint jasmine');
+    grunt.loadNpmTasks('grunt-jasmine-task');
 };

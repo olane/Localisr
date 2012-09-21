@@ -8,8 +8,8 @@ var loadExchangeRates = function(){
     var needsLoad = false;
 
     // If there are cached rates that have expired
-    if(localStorage['exchangerates']){
-        var currentAge = (new Date()).getTime() / 1000 - parseInt(localStorage['timestamp'], 10);
+    if(localStorage.exchangerates){
+        var currentAge = (new Date()).getTime() / 1000 - parseInt(localStorage.timestamp, 10);
         if(currentAge >= cacheAge){
             needsLoad = true;
         }
@@ -29,8 +29,8 @@ var loadExchangeRates = function(){
             async: false,
             success: function(data){
                 console.log(data);
-                localStorage['exchangerates'] = JSON.stringify(data);
-                localStorage['timestamp'] = data.timestamp;
+                localStorage.exchangerates = JSON.stringify(data);
+                localStorage.timestamp = data.timestamp;
             }
         });
     }
@@ -62,9 +62,9 @@ var runScript = function(tabID){
 
             isConverted: tabsConverted[key],
 
-            currency: localStorage['currency'],
-            timezone: localStorage['timezone'],
-            rates: JSON.parse(localStorage['exchangerates']).rates,
+            currency: localStorage.currency,
+            timezone: localStorage.timezone,
+            rates: JSON.parse(localStorage.exchangerates).rates,
             timezones: timezones
 
         },

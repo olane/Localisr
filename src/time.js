@@ -10,6 +10,18 @@ r.regexp.time.separators = new RegExp(r.string.time.separators);
 
 var targetTimezone;
 
+var setupTimes = function(){
+	timezonesString = '(' + timeAcronyms.join('|') + '){1}';
+	timeString = "[0-9]{1,2}" + // One or two digits
+		"(\\s*" + r.string.time.separators + "\\s*[0-9]{2}\\s*)?" + // All or none of: one separator then two digits, optionally separated by whitespace
+		"((am)|(pm))?\\s*" + // Optional AM/PM
+		timezonesString; // One of the timezone acronyms
+
+	timezonesRegex = new RegExp(timezonesString, 'gi');
+	timeRegex = new RegExp(r.base.start + timeString + r.base.end, 'gi');
+	timeReplaceRegex = new RegExp(timeString, 'gi');
+};
+
 var parseTimeWithMinutes = function(string, zone, separator){
 	separator = separator || ':';
 	var formatString, outputString, common;
