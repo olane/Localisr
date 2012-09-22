@@ -1,17 +1,16 @@
-var targetCurrency, targetSymbol;
+var targetCurrency, targetSymbol, currencyAcronyms;
 
-var currencyAcronyms;
 var symbols = ['£', '€', '¥', '$'];
 var currencies = [];
-var i;
 
 money.base = 'USD';
 
-
-var setupCurrencies = function(){
+var setupCurrencies = function(acronyms){
+	var i = 0;
+	currencyAcronyms = acronyms;
 	// Set up currencies list using acronyms and symbols.
-	for(i = 0; i < currencyAcronyms.length; i++){
-		currencies.push(currencyAcronyms[i]);
+	for(i = 0; i < acronyms.length; i++){
+		currencies.push(acronyms[i]);
 	}
 	for(i = 0; i < symbols.length; i++){
 		var symbol = symbols[i];

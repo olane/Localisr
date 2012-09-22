@@ -38,7 +38,7 @@ var loadExchangeRates = function(){
 
 // Load the map of timezone offsets and acronyms just once per session
 $.ajax({
-    url: "zones.json",
+    url: 'zones.json',
     async: false,
     dataType: 'json',
     success: function(data){

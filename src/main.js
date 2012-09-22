@@ -1,3 +1,57 @@
+var converters = [
+	// Price converter
+	function(text, matches, replacements){
+		for(var i = 0; i < matches.length; i++){
+			var oldPrice = matches[i];
+			if(oldPrice){
+				var currency = oldPrice.match(r.regexp.price.currencies)[0];
+				// Convert them to the user's currency
+				var newPrice = convertPrice(oldPrice, currency);
+
+				// Replace the old price string with the new one
+				text = text.replace(replacements[i], generateReplacement(oldPrice, newPrice, 'price'));
+			}
+		}
+
+		return text;
+	},
+
+	// Time converter
+	function(text, matches, replacements){
+		// Loop through the array of matched times to convert them
+		for(var i = 0; i < matches.length; i++){
+			// Store the original time
+			var oldTime = matches[i];
+
+			// string.match() sometimes returns empty strings or undefined, so ignore these
+			if(oldTime){
+				// Extract just the timezone acronym from the time string
+				var timezone = oldTime.match(r.regexp.time.timezones)[0];
+				// Don't convert values that are already in the user's target timezone
+				if(timezone.toUpperCase() === targetTimezone){ continue; }
+
+				var newTime;
+				// If the time string matched the regex and has a separator character in it, it must also have minutes
+				if(oldTime.match(r.regexp.time.separators)){
+					newTime = parseTimeWithMinutes(oldTime, timezone);
+				}
+				// Otherwise it's just got hours
+				else{
+					newTime = parseTime(oldTime, timezone);
+				}
+
+				// Don't perform the replacement if the conversion failed
+				if(newTime !== null){
+					// Replace the current occurence of a time in the text node with a html string replacement for the converted time and popup box
+					text = text.replace(replacements[i], generateReplacement(oldTime, newTime, 'time'));
+				}
+			}
+		}
+
+		return text;
+	}
+];
+
 // Converts any price and time strings in any text nodes in the element, then recursively converts any child elements
 var convert = function(element){
 	$(element).contents().each(function(index){
@@ -6,72 +60,25 @@ var convert = function(element){
 			var text = this.textContent;
 			var oldText = text;
 
-			var replaced = false;
-			var priceMatches = text.match(r.regexp.price.matcher);
+			for(var i = 0; i < 2; i++){
+				var matcher = [r.regexp.price.matcher, r.regexp.time.matcher][i];
+				var replacer = [r.regexp.price.replacer, r.regexp.time.replacer][i];
 
-			var replacements, i;
+				// Get an array of every substring in the current text node that is a valid price or time
+				var matches = text.match(matcher);
 
-			if(priceMatches){
-				replacements = text.match(r.regexp.price.replacer);
+				// If there are any matches
+				if(matches){
+					// Get an array of substrings from the current text node to replace with the converted value
+					// This is the same as the array of matches but without trailing / leading whitespace so whitespace doesn't get replaced
+					var replacements = text.match(replacer);
 
-				for(i = 0; i < priceMatches.length; i++){
-					if(!priceMatches[i]){ break; }
-					replaced = true;
-
-					// Extract a string containing just the numerical price from the text
-					var oldPrice = priceMatches[i];
-
-					var currency = oldPrice.match(r.regexp.price.currencies)[0];
-					// Convert them to the user's currency
-					var newPrice = convertPrice(oldPrice, currency);
-
-					// Replace the old price string with the new one
-					text = text.replace(replacements[i], generateReplacement(oldPrice, newPrice, 'price'));
-				}
-			}
-
-			// Get an array of every substring in the current text node that is a valid time with a timezone acronym
-			var timeMatches = text.match(timeRegex);
-
-			// If there are any matches
-			if(timeMatches){
-				// Get an array of substrings from the current text node to replace with the converted time
-				// This is the same as the array of matches but without trailing / leading whitespace so whitespace doesn't get replaced
-				replacements = text.match(timeReplaceRegex);
-
-				// Loop through the array of matched times to convert them
-				for(i = 0; i < timeMatches.length; i++){
-					// string.match() sometimes returns empty strings or undefined, so ignore these
-					if(!timeMatches[i]){ continue; }
-
-					// Store the original time
-					var oldTime = timeMatches[i];
-					// Extract just the timezone acronym from the time string
-					var timezone = oldTime.match(timezonesRegex)[0];
-					// Don't convert values that are already in the user's target timezone
-					if(timezone.toUpperCase() === targetTimezone){ continue; }
-
-					var newTime;
-					// If the time string matched the regex and has a separator character in it, it must also have minutes
-					if(oldTime.match(r.regexp.time.separators)){
-						newTime = parseTimeWithMinutes(oldTime, timezone);
-					}
-					// Otherwise it's just got hours
-					else{
-						newTime = parseTime(oldTime, timezone);
-					}
-
-					// Don't perform the replacement if the conversion failed
-					if(newTime !== null){
-						// Replace the current occurence of a time in the text node with a html string replacement for the converted time and popup box
-						text = text.replace(replacements[i], generateReplacement(oldTime, newTime, 'time'));
-						replaced = true;
-					}
+					text = converters[i](text, matches, replacements);
 				}
 			}
 
 			// If any replacements have been made, replace the text node with a span element containing the converted text
-			if(replaced){
+			if(text !== oldText){
 				var replacement = $('<span>')
 					.attr('data-original-text', oldText)
 					.html(text);
@@ -117,13 +124,8 @@ var restore = function(element){
 };
 
 var init = function(){
-	// Create an array of timezone acronym strings from the keys of zones.json
-	timeAcronyms = arrayOfKeys(timezones);
-
-	currencyAcronyms = arrayOfKeys(money.rates);
-
-	setupCurrencies();
-	setupTimes();
+	setupCurrencies(arrayOfKeys(money.rates));
+	setupTimes(arrayOfKeys(timezones));
 
 	// If the user's target currency has a symbol then use it, otherwise use the acronym as the symbol
 	targetSymbol = acronymMap[targetCurrency] || targetCurrency + ' ';
