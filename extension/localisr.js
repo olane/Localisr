@@ -1,5 +1,3 @@
-(function(){
-
 // Regular expressions
 var r = {
 	// Common snippets used in many regular expressions
@@ -428,4 +426,3 @@ chrome.extension.sendMessage({method: 'getAutoRunURLs'}, function(urls){
 	}
 });
 
-}());
