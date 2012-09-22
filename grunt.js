@@ -17,7 +17,10 @@ module.exports = function(grunt) {
             files: []
         },
         jasmine: {
-            all: ['specs/specrunner.html']
+            all: {
+                src: ['test/jasmine/runner.html'],
+                errorReporting: true
+            }
         },
         concat: {
             dist: {
@@ -38,7 +41,7 @@ module.exports = function(grunt) {
         },
         watch: {
             files: '<config:concat.dist.src>',
-            tasks: 'concat'
+            tasks: 'jasmine concat'
         },
         jshint: {
             options: {
