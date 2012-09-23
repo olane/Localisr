@@ -1,5 +1,3 @@
-(function(){
-
 // Regular expressions
 var r = {
 	// Common snippets used in many regular expressions
