@@ -7,11 +7,11 @@ var setupTimes = function(acronyms){
 	r.string.time.timezones = '(' + acronyms.join('|') + '){1}';
 	r.string.time.time = "[0-9]{1,2}" + // One or two digits
 		"(\\s*" + r.string.time.separators + "\\s*[0-9]{2}\\s*)?" + // All or none of: one separator then two digits, optionally separated by whitespace
-		"((am)|(pm))?\\s*" + // Optional AM/PM
+		"(\\s*am|pm)?\\s*" + // Optional AM/PM
 		r.string.time.timezones; // One of the timezone acronyms
 
 	r.regexp.time.timezones = new RegExp(r.string.time.timezones, 'gi');
-	r.regexp.time.matcher = new RegExp(r.base.start + r.string.time.time + r.base.end, 'gi');
+	r.regexp.time.matcher = new RegExp(r.string.time.time, 'gi');
 	r.regexp.time.replacer = new RegExp(r.string.time.time, 'gi');
 };
 

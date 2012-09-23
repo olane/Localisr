@@ -27,7 +27,7 @@ var setupCurrencies = function(acronyms){
 	var commonString = r.string.price.currencies + "\\s*" + r.base.price;
 
 	// Regex used for determining whether there is a price in a string
-	r.regexp.price.matcher = new RegExp(r.base.start + commonString + r.base.end, 'g');
+	r.regexp.price.matcher = new RegExp(commonString, 'gi');
 	// Regex for replacing the price in the string
 	r.regexp.price.replacer = new RegExp(commonString, 'g');
 	r.regexp.price.currencies = new RegExp(r.string.price.currencies, 'g');

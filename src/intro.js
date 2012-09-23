@@ -2,8 +2,8 @@
 var r = {
 	// Common snippets used in many regular expressions
 	base: {
-		start : "(^|\\s)+",
-		end : "($|\\s)+"
+		start : "(?=\\s)",
+		end : "(?=\\s)"
 	},
 	// RegExp objects
 	regexp: {
@@ -17,7 +17,7 @@ var r = {
 	}
 };
 
-// Swaps the keys and values of an object
+// Returns: A new object with the keys and values of the input object swapped
 var invert = function(obj){
 	var new_obj = {};
 
@@ -30,7 +30,7 @@ var invert = function(obj){
 	return new_obj;
 };
 
-// Creates an array of strings from the keys of an object
+// Returns: An array of strings from the keys of the input object
 var arrayOfKeys = function(obj){
 	var array = [];
 	for(var key in obj){
@@ -50,7 +50,12 @@ var hoverStyle = {
 	zIndex: 9999
 };
 
-// Returns at html string to replace a converted time or price with
+// Creates an html string to replace a converted value with
+// Arguments:
+//   - oldValue: The string that will be replaced eg. "£100"
+//   - newValue: The converted form of oldValue eg. "$130"
+//   - type: A string describing the type of value being converted eg. "price"
+// Returns: A string of html containing the markup for the replacement value and the popup to display the original value
 var generateReplacement = function(oldValue, newValue, type){
 	var hover = $('<span>')
 		.addClass('converted-value-hover')

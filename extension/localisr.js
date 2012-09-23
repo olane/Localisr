@@ -2,8 +2,8 @@
 var r = {
 	// Common snippets used in many regular expressions
 	base: {
-		start : "(^|\\s)+",
-		end : "($|\\s)+"
+		start : "(?=\\s)",
+		end : "(?=\\s)"
 	},
 	// RegExp objects
 	regexp: {
@@ -17,7 +17,7 @@ var r = {
 	}
 };
 
-// Swaps the keys and values of an object
+// Returns: A new object with the keys and values of the input object swapped
 var invert = function(obj){
 	var new_obj = {};
 
@@ -30,7 +30,7 @@ var invert = function(obj){
 	return new_obj;
 };
 
-// Creates an array of strings from the keys of an object
+// Returns: An array of strings from the keys of the input object
 var arrayOfKeys = function(obj){
 	var array = [];
 	for(var key in obj){
@@ -50,7 +50,12 @@ var hoverStyle = {
 	zIndex: 9999
 };
 
-// Returns at html string to replace a converted time or price with
+// Creates an html string to replace a converted value with
+// Arguments:
+//   - oldValue: The string that will be replaced eg. "£100"
+//   - newValue: The converted form of oldValue eg. "$130"
+//   - type: A string describing the type of value being converted eg. "price"
+// Returns: A string of html containing the markup for the replacement value and the popup to display the original value
 var generateReplacement = function(oldValue, newValue, type){
 	var hover = $('<span>')
 		.addClass('converted-value-hover')
@@ -75,11 +80,11 @@ var setupTimes = function(acronyms){
 	r.string.time.timezones = '(' + acronyms.join('|') + '){1}';
 	r.string.time.time = "[0-9]{1,2}" + // One or two digits
 		"(\\s*" + r.string.time.separators + "\\s*[0-9]{2}\\s*)?" + // All or none of: one separator then two digits, optionally separated by whitespace
-		"((am)|(pm))?\\s*" + // Optional AM/PM
+		"(\\s*am|pm)?\\s*" + // Optional AM/PM
 		r.string.time.timezones; // One of the timezone acronyms
 
 	r.regexp.time.timezones = new RegExp(r.string.time.timezones, 'gi');
-	r.regexp.time.matcher = new RegExp(r.base.start + r.string.time.time + r.base.end, 'gi');
+	r.regexp.time.matcher = new RegExp(r.string.time.time, 'gi');
 	r.regexp.time.replacer = new RegExp(r.string.time.time, 'gi');
 };
 
@@ -199,7 +204,7 @@ var setupCurrencies = function(acronyms){
 	var commonString = r.string.price.currencies + "\\s*" + r.base.price;
 
 	// Regex used for determining whether there is a price in a string
-	r.regexp.price.matcher = new RegExp(r.base.start + commonString + r.base.end, 'g');
+	r.regexp.price.matcher = new RegExp(commonString, 'gi');
 	// Regex for replacing the price in the string
 	r.regexp.price.replacer = new RegExp(commonString, 'g');
 	r.regexp.price.currencies = new RegExp(r.string.price.currencies, 'g');

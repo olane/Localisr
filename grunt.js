@@ -41,7 +41,7 @@ module.exports = function(grunt) {
         },
         watch: {
             files: '<config:concat.dist.src>',
-            tasks: 'jasmine concat'
+            tasks: 'concat'
         },
         jshint: {
             options: {

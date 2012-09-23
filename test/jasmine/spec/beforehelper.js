@@ -15,6 +15,9 @@ timezones = {
     },
     'EST': {
         offset: -5
+    },
+    'PST': {
+        offset: -8
     }
 };
 

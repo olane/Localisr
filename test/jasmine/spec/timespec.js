@@ -1,20 +1,4 @@
-describe('The time conversion module', function() {
-    // var player;
-    // var song;
-
-    // beforeEach(function() {
-    //   player = new Player();
-    //   song = new Song();
-    // });
-
-    // it("should be able to play a Song", function() {
-    //   player.play(song);
-    //   expect(player.currentlyPlayingSong).toEqual(song);
-
-    //   //demonstrates use of custom matcher
-    //   expect(player).toBePlaying(song);
-    // });
-
+describe('The time conversion module', function(){
     it('should be able to convert numerical UTC offsets to the correct string', function(){
         expect(offsetToString(5)).toEqual('+0500');
         expect(offsetToString(-7)).toEqual('-0700');
@@ -28,6 +12,63 @@ describe('The time conversion module', function() {
         targetTimezone = 'EST';
         expect(zoneToOffsetString('GMT')).toEqual('+0500');
     });
+
+    describe('The regular expressions for parsing time strings', function(){
+        it('should be able to detect multiple valid times in a string amongst other text', function(){
+            var testString = 'Lorem ipsum 18:32 GMT dolor 10:23 PST sit amet';
+            var matches = testString.match(r.regexp.time.matcher);
+            expect(matches.length).toBe(2);
+        });
+
+        it('should support times in 12-hour format', function(){
+            expect('10am EST'.match(r.regexp.time.matcher).length).toBe(1);
+        });
+
+        it('should support AM/PM in upper or lower case', function(){
+            var testString = '10AM EST foo 10am EST foo 10pm EST foo 10PM EST';
+            var matches = testString.match(r.regexp.time.matcher);
+            expect(matches.length).toBe(4);
+        });
+
+        it('should support time zone acronyms in upper or lower case', function(){
+            var testString = '10AM est foo 10AM EST foo 10PM pst foo 10PM EST';
+            var matches = testString.match(r.regexp.time.matcher);
+            expect(matches.length).toBe(4);
+        });
+
+        it('should support multiple consecutive times with only whitespace between them', function(){
+            var testString = '10AM EST 10AM EST 10AM EST';
+            var matches = testString.match(r.regexp.time.matcher);
+            expect(matches.length).toBe(3);
+        });
+
+        it('should support multiple consecutive times with commas between them', function(){
+            var testString = '10AM EST,10AM EST,10AM EST';
+            var matches = testString.match(r.regexp.time.matcher);
+            expect(matches.length).toBe(3);
+        });
+
+        it('should support times without minutes', function(){
+            expect('10am gmt'.match(r.regexp.time.matcher).length).toBe(1);
+        });
+
+
+        it('should support optional whitespace between the time and AM/PM', function(){
+            expect('10 am gmt'.match(r.regexp.time.matcher).length).toBe(1);
+        });
+    });
+
+
+
+
+
+    // it("should be able to play a Song", function() {
+    //   player.play(song);
+    //   expect(player.currentlyPlayingSong).toEqual(song);
+
+    //   //demonstrates use of custom matcher
+    //   expect(player).toBePlaying(song);
+    // });
 
     // describe("when song has been paused", function() {
     //   beforeEach(function() {
@@ -57,16 +98,5 @@ describe('The time conversion module', function() {
     //   player.makeFavorite();
 
     //   expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
-    // });
-
-    // //demonstrates use of expected exceptions
-    // describe("#resume", function() {
-    //   it("should throw an exception if song is already playing", function() {
-    //     player.play(song);
-
-    //     expect(function() {
-    //       player.resume();
-    //     }).toThrow("song is already playing");
-    //   });
     // });
 });
