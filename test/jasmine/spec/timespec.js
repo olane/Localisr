@@ -13,6 +13,21 @@ describe('The time conversion module', function(){
         expect(zoneToOffsetString('GMT')).toEqual('+0500');
     });
 
+    it('should correctly localise time strings', function(){
+        targetTimezone = 'GMT';
+        expect(convertTimeString('10:32 EST', '+0500', 'HH:mm')).toBe('05:32 GMT');
+    });
+
+    it('should correctly parse and convert time strings without minutes', function(){
+        targetTimezone = 'GMT';
+        expect(parseTime('10 am EST', 'EST')).toBe('03 pm GMT');
+    });
+
+    it('should correctly parse and convert time strings with minutes', function(){
+        targetTimezone = 'GMT';
+        expect(parseTimeWithMinutes('10:22 EST', 'EST')).toBe('15:22 GMT');
+    });
+
     describe('The regular expressions for parsing time strings', function(){
         it('should be able to detect multiple valid times in a string amongst other text', function(){
             var testString = 'Lorem ipsum 18:32 GMT dolor 10:23 PST sit amet';
