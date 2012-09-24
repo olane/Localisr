@@ -38,4 +38,14 @@ describe('The price conversion module', function(){
 			expect('usd gbp'.match(r.regexp.price.currencies).length).toBe(2);
 		});
 	});
+
+	describe('The function for converting all prices in a text node', function(){
+		it('should not perform the conversion on a price that is already in the user\'s target currency', function(){
+			targetCurrency = 'GBP';
+			var text = 'Lorem GBP 100 ipsum';
+			var matches = text.match(r.regexp.price.matcher);
+			var priceConverter = converters[0];
+			expect(priceConverter(text, matches)).toBe(text);
+		});
+	});
 });

@@ -78,6 +78,16 @@ describe('The time conversion module', function(){
         });
     });
 
+    describe('The function for converting all times in a text node', function(){
+        it('should not perform the conversion on a time that is already in the user\'s target timezone', function(){
+            targetTimezone = 'GMT';
+            var text = 'Lorem 18:30 GMT ipsum';
+            var matches = text.match(r.regexp.time.matcher);
+            var timeConverter = converters[1];
+            expect(timeConverter(text, matches)).toBe(text);
+        });
+    });
+
 
 
 

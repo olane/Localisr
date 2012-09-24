@@ -268,9 +268,9 @@ var converters = [
 			// string.match() sometimes returns empty strings or undefined, so ignore these
 			if(oldTime){
 				// Extract just the timezone acronym from the time string
-				var timezone = oldTime.match(r.regexp.time.timezones)[0];
+				var timezone = oldTime.match(r.regexp.time.timezones)[0].toUpperCase();
 				// Don't convert times that are already in the user's target timezone
-				if(timezone.toUpperCase() === targetTimezone){ continue; }
+				if(timezone === targetTimezone){ continue; }
 
 				var newTime;
 				// If the time string matched the regex and has a separator character in it, it must also have minutes
