@@ -12,37 +12,37 @@ var setupTimes = function(acronyms){
 
 	r.regexp.time.timezones = new RegExp(r.string.time.timezones, 'gi');
 	r.regexp.time.matcher = new RegExp(r.string.time.time, 'gi');
-	r.regexp.time.replacer = new RegExp(r.string.time.time, 'gi');
 };
 
 var parseTimeWithMinutes = function(string, zone, separator){
 	separator = separator || ':';
-	var formatString, outputString, common;
+	var format, offset;
 
-	var totalOffsetString = zoneToOffsetString(zone);
+	offset = zoneToOffsetString(zone);
 
 	if(string.match(/am|pm/i)){
-		common = 'h' + separator + 'mm a';
+		format = 'h' + separator + 'mm a';
 	}
 	else{
-		common = 'H' + separator + 'mm';
+		format = 'H' + separator + 'mm';
 	}
 
-	return convertTimeString(string, totalOffsetString, common);
+	return convertTimeString(string, offset, format);
 };
 
 var parseTime = function(string, zone){
-	var formatString, outputString, common;
+	var format, offset;
 
-	var totalOffsetString = zoneToOffsetString(zone);
+	offset = zoneToOffsetString(zone);
 
 	if(string.match(/am|pm/i)){
-		common = 'ha';
+		format = 'ha';
 	}
 	else{
-		common = 'H';
+		format = 'H';
 	}
-	return convertTimeString(string, totalOffsetString, common);
+
+	return convertTimeString(string, offset, format);
 };
 
 // Convert a time string to the user's target time

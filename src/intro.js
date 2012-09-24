@@ -1,10 +1,5 @@
 // Regular expressions
 var r = {
-	// Common snippets used in many regular expressions
-	base: {
-		start : "(?=\\s)",
-		end : "(?=\\s)"
-	},
 	// RegExp objects
 	regexp: {
 		time: {},

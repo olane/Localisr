@@ -21,15 +21,12 @@ var setupCurrencies = function(acronyms){
 		currencies.push(symbol);
 	}
 
-	r.base.price = "[0-9]+\\.?([0-9]{2})?";
-	// Characters used for both matching and replacing
+	r.string.price.price = "[0-9]+\\.?([0-9]{2})?";
 	r.string.price.currencies = "(" + currencies.join('|') + "){1}";
-	var commonString = r.string.price.currencies + "\\s*" + r.base.price;
+	r.string.price.matcher = r.string.price.currencies + "\\s*" + r.string.price.price;
 
 	// Regex used for determining whether there is a price in a string
-	r.regexp.price.matcher = new RegExp(commonString, 'gi');
-	// Regex for replacing the price in the string
-	r.regexp.price.replacer = new RegExp(commonString, 'gi');
+	r.regexp.price.matcher = new RegExp(r.string.price.matcher, 'gi');
 	r.regexp.price.currencies = new RegExp(r.string.price.currencies, 'gi');
 };
 

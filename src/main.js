@@ -1,6 +1,6 @@
 var converters = [
 	// Price converter
-	function(text, matches, replacements){
+	function(text, matches){
 		for(var i = 0; i < matches.length; i++){
 			var oldPrice = matches[i];
 			if(oldPrice){
@@ -9,7 +9,7 @@ var converters = [
 				var newPrice = convertPrice(oldPrice, currency);
 
 				// Replace the old price string with the new one
-				text = text.replace(replacements[i], generateReplacement(oldPrice, newPrice, 'price'));
+				text = text.replace(oldPrice, generateReplacement(oldPrice, newPrice, 'price'));
 			}
 		}
 
@@ -17,7 +17,7 @@ var converters = [
 	},
 
 	// Time converter
-	function(text, matches, replacements){
+	function(text, matches){
 		// Loop through the array of matched times to convert them
 		for(var i = 0; i < matches.length; i++){
 			// Store the original time
@@ -43,7 +43,7 @@ var converters = [
 				// Don't perform the replacement if the conversion failed
 				if(newTime !== null){
 					// Replace the current occurence of a time in the text node with a html string replacement for the converted time and popup box
-					text = text.replace(replacements[i], generateReplacement(oldTime, newTime, 'time'));
+					text = text.replace(oldTime, generateReplacement(oldTime, newTime, 'time'));
 				}
 			}
 		}
@@ -62,18 +62,13 @@ var convert = function(element){
 
 			for(var i = 0; i < 2; i++){
 				var matcher = [r.regexp.price.matcher, r.regexp.time.matcher][i];
-				var replacer = [r.regexp.price.replacer, r.regexp.time.replacer][i];
 
 				// Get an array of every substring in the current text node that is a valid price or time
 				var matches = text.match(matcher);
 
 				// If there are any matches
 				if(matches){
-					// Get an array of substrings from the current text node to replace with the converted value
-					// This is the same as the array of matches but without trailing / leading whitespace so whitespace doesn't get replaced
-					var replacements = text.match(replacer);
-
-					text = converters[i](text, matches, replacements);
+					text = converters[i](text, matches);
 				}
 			}
 
