@@ -243,6 +243,10 @@ var converters = [
 			var oldPrice = matches[i];
 			if(oldPrice){
 				var currency = oldPrice.match(r.regexp.price.currencies)[0].toUpperCase();
+
+				// Don't convert prices that are already in the user's target currency
+				if(currency === targetCurrency || currency === targetSymbol){ continue; }
+
 				// Convert them to the user's currency
 				var newPrice = convertPrice(oldPrice, currency);
 
@@ -265,7 +269,7 @@ var converters = [
 			if(oldTime){
 				// Extract just the timezone acronym from the time string
 				var timezone = oldTime.match(r.regexp.time.timezones)[0];
-				// Don't convert values that are already in the user's target timezone
+				// Don't convert times that are already in the user's target timezone
 				if(timezone.toUpperCase() === targetTimezone){ continue; }
 
 				var newTime;
