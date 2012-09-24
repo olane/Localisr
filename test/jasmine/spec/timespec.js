@@ -20,7 +20,12 @@ describe('The time conversion module', function(){
 
     it('should correctly parse and convert time strings without minutes', function(){
         targetTimezone = 'GMT';
-        expect(parseTime('10 am EST', 'EST')).toBe('03 pm GMT');
+        expect(parseTime('10 am EST', 'EST')).toBe('3pm GMT');
+        expect(parseTime('10am PST', 'PST')).toBe('6pm GMT');
+        expect(parseTime('10AM ADT', 'ADT')).toBe('1pm GMT');
+
+        targetTimezone = 'EST';
+        expect(parseTime('9pm GMT', 'GMT')).toBe('4pm EST');
     });
 
     it('should correctly parse and convert time strings with minutes', function(){

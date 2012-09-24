@@ -18,6 +18,9 @@ timezones = {
     },
     'PST': {
         offset: -8
+    },
+    'ADT': {
+        offset: -3
     }
 };
 

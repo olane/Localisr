@@ -22,10 +22,10 @@ var parseTimeWithMinutes = function(string, zone, separator){
 	var totalOffsetString = zoneToOffsetString(zone);
 
 	if(string.match(/am|pm/i)){
-		common = 'hh' + separator + 'mm a';
+		common = 'h' + separator + 'mm a';
 	}
 	else{
-		common = 'HH' + separator + 'mm';
+		common = 'H' + separator + 'mm';
 	}
 
 	return convertTimeString(string, totalOffsetString, common);
@@ -37,10 +37,10 @@ var parseTime = function(string, zone){
 	var totalOffsetString = zoneToOffsetString(zone);
 
 	if(string.match(/am|pm/i)){
-		common = 'hh a';
+		common = 'ha';
 	}
 	else{
-		common = 'HH';
+		common = 'H';
 	}
 	return convertTimeString(string, totalOffsetString, common);
 };
