@@ -35,6 +35,7 @@ describe('The price conversion module', function(){
 
 		it('should detect currency acronyms in upper or lower case', function(){
 			expect('usd 8'.match(r.regexp.price.matcher).length).toBe(1);
+			expect('usd gbp'.match(r.regexp.price.currencies).length).toBe(2);
 		});
 	});
 });

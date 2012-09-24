@@ -4,7 +4,7 @@ var converters = [
 		for(var i = 0; i < matches.length; i++){
 			var oldPrice = matches[i];
 			if(oldPrice){
-				var currency = oldPrice.match(r.regexp.price.currencies)[0];
+				var currency = oldPrice.match(r.regexp.price.currencies)[0].toUpperCase();
 				// Convert them to the user's currency
 				var newPrice = convertPrice(oldPrice, currency);
 

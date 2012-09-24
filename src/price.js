@@ -29,8 +29,8 @@ var setupCurrencies = function(acronyms){
 	// Regex used for determining whether there is a price in a string
 	r.regexp.price.matcher = new RegExp(commonString, 'gi');
 	// Regex for replacing the price in the string
-	r.regexp.price.replacer = new RegExp(commonString, 'g');
-	r.regexp.price.currencies = new RegExp(r.string.price.currencies, 'g');
+	r.regexp.price.replacer = new RegExp(commonString, 'gi');
+	r.regexp.price.currencies = new RegExp(r.string.price.currencies, 'gi');
 };
 
 var symbolMap = {
