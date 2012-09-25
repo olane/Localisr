@@ -86,8 +86,8 @@ var convert = function(element){
 			}
 		}
 
-		else if(this.nodeType === 1 && this.nodeName.toLowerCase() !== 'iframe'){
-			// The node is a normal element so recursively scan it for more text nodes
+		else if(shouldParse(this)){
+			// The node is an element node so recursively scan it for more text nodes
 			convert(this);
 		}
 	});
@@ -99,8 +99,7 @@ var restore = function(element){
 	// Loop through all child nodes of the element
 	$(element).contents().each(function(index){
 		var nodeName = this.nodeName.toLowerCase();
-		// If the node is a DOM element (not a text node) and not an iframe (due to cross-domain security restrictions)
-		if(this.nodeType === 1 && nodeName !== 'iframe'){
+		if(shouldParse(this)){
 
 			// If the node is a span node
 			if(nodeName === 'span'){

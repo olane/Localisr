@@ -12,6 +12,15 @@ var r = {
 	}
 };
 
+var ignoredElements = ['iframe', 'style', 'script'];
+
+// Arguments:
+//   - node: A HTML DOM node
+// Returns: true if the node is an element node and should not be ignored
+var shouldParse = function(node){
+	return node.nodeType === 1 && ignoredElements.indexOf(node.nodeName.toLowerCase()) === -1;
+};
+
 // Returns: A new object with the keys and values of the input object swapped
 var invert = function(obj){
 	var new_obj = {};

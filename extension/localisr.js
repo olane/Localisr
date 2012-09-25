@@ -12,6 +12,15 @@ var r = {
 	}
 };
 
+var ignoredElements = ['iframe', 'style', 'script'];
+
+// Arguments:
+//   - node: A HTML DOM node
+// Returns: true if the node is an element node and should not be ignored
+var shouldParse = function(node){
+	return node.nodeType === 1 && ignoredElements.indexOf(node.nodeName.toLowerCase()) === -1;
+};
+
 // Returns: A new object with the keys and values of the input object swapped
 var invert = function(obj){
 	var new_obj = {};
@@ -324,8 +333,8 @@ var convert = function(element){
 			}
 		}
 
-		else if(this.nodeType === 1 && this.nodeName.toLowerCase() !== 'iframe'){
-			// The node is a normal element so recursively scan it for more text nodes
+		else if(shouldParse(this)){
+			// The node is an element node so recursively scan it for more text nodes
 			convert(this);
 		}
 	});
@@ -337,8 +346,7 @@ var restore = function(element){
 	// Loop through all child nodes of the element
 	$(element).contents().each(function(index){
 		var nodeName = this.nodeName.toLowerCase();
-		// If the node is a DOM element (not a text node) and not an iframe (due to cross-domain security restrictions)
-		if(this.nodeType === 1 && nodeName !== 'iframe'){
+		if(shouldParse(this)){
 
 			// If the node is a span node
 			if(nodeName === 'span'){
