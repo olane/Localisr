@@ -3,25 +3,29 @@
 <head>
     <title>Jasmine Spec Runner</title>
 
+    <!-- Jasmine Library -->
     <link rel="stylesheet" href="lib/jasmine-1.2.0/jasmine.css">
     <script src="lib/jasmine-1.2.0/jasmine.js"></script>
     <script src="lib/jasmine-1.2.0/jasmine-html.js"></script>
 
+    <!-- Libraries used by the extension -->
     <script src="../../extension/lib/jquery.js"></script>
     <script src="../../extension/lib/accounting.js"></script>
     <script src="../../extension/lib/money.js"></script>
     <script src="../../extension/lib/moment.js"></script>
 
-    <script src="spec/beforehelper.js"></script>
+    <!-- Shared code used by the extension -->
+    <script src="../../extension/shared.js"></script>
 
+    <!-- Extension code, with helpers to generate mock data for testing with -->
+    <script src="spec/beforehelper.js"></script>
+    <script src="../../extension/localisr.js"></script>
+    <script src="spec/afterhelper.js"></script>
+
+    <!-- Unit test specs -->
     <script src="spec/miscspec.js"></script>
     <script src="spec/timespec.js"></script>
     <script src="spec/pricespec.js"></script>
-
-    <script src="../../extension/localisr.js"></script>
-
-    <script src="spec/afterhelper.js"></script>
-
 
     <script>
         (function(){

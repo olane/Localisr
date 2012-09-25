@@ -1,28 +1,21 @@
 (function(){
-    // Creates an array of strings from the keys of an object
-    var arrayOfKeys = function(obj){
-        var array = [];
-        for(var key in obj){
-            array.push(key);
-        }
-        return array;
-    };
+    var timezones, timezoneAcronyms, currencies;
 
-    var optionTypes = ['currency', 'timezone'];
-    var currencies = arrayOfKeys(JSON.parse(localStorage.exchangerates).rates);
-    var timezones = [];
     $.ajax({
         url: "zones.json",
         async: false,
         dataType: 'json',
         success: function(data){
-            for(var key in data){
-                timezones.push(key);
-            }
+            timezones = data;
         }
     });
+    timezoneAcronyms = arrayOfKeys(timezones);
 
-    var data = [currencies, timezones];
+    currencies = arrayOfKeys(JSON.parse(localStorage.exchangerates).rates);
+
+
+    var optionTypes = ['currency', 'timezone'];
+    var data = [currencies, timezoneAcronyms];
 
     // Saves options to localStorage.
     var saveOptions = function(){
@@ -33,7 +26,7 @@
             localStorage[optionType] = timezone;
         }
 
-        localStorage['alwaysrun'] = $('#alwaysrun').val();
+        localStorage.alwaysrun = $('#alwaysrun').val();
 
         // Update status to let user know options were saved.
         var status = $("#status")
@@ -46,19 +39,17 @@
 
     // Restores select box state to saved value from localStorage.
     var restoreOptions = function(){
-        for (var i = 0; i < optionTypes.length; i++){
+        for(var i = 0; i < optionTypes.length; i++){
             var optionType = optionTypes[i];
-            var favorite = localStorage[optionType];
-            if (!favorite){ break; }
+            var favourite = localStorage[optionType];
+            if (!favourite){ continue; }
 
-            var select = $('#' + optionType)[0];
-            for (var j = 0; j < select.children.length; j++) {
-                var child = select.children[j];
-                if (child.value == favorite) {
-                    child.selected = "true";
-                    break;
+            $('#' + optionType).children().each(function(){
+                if(this.value === favourite){
+                    this.selected = true;
+                    return;
                 }
-            }
+            });
         }
 
         $('#alwaysrun').val(localStorage.alwaysrun);
@@ -69,14 +60,22 @@
             saveOptions();
         });
 
-        for (var i = 0; i < data.length; i++) {
+        for(var i = 0; i < data.length; i++){
             var options = [];
-            for (var j = 0; j < currencies.length; j++) {
+            for(var j = 0; j < data[i].length; j++){
+                // String to store in localStorage
                 var string = data[i][j];
-                options.push($('<option>').attr('value', string).text(string));
+                // String to display to the user in the list
+                var displayString = string;
+
+                // For timezones, display the acronym with the offset eg BST (UTC +0100)
+                if(optionTypes[i] === 'timezone'){
+                    var offset = timezones[string].offset;
+                    displayString += ' (UTC ' + offsetToString(offset) + ')';
+                }
+                options.push($('<option>').attr('value', string).text(displayString));
             }
             $('#' + optionTypes[i]).append(options);
-
         }
 
         restoreOptions();
