@@ -13,15 +13,6 @@ module.exports = function(grunt) {
         lint: {
             files: ['extension/localisr.js']
         },
-        qunit: {
-            files: []
-        },
-        jasmine: {
-            all: {
-                src: ['test/jasmine/runner.html'],
-                errorReporting: true
-            }
-        },
         mocha: {
             index: ['test/mocha/index.html']
         },
@@ -75,7 +66,6 @@ module.exports = function(grunt) {
     });
 
     // Default task.
-    grunt.registerTask('default', 'concat lint jasmine');
-    grunt.loadNpmTasks('grunt-jasmine-task');
+    grunt.registerTask('default', 'concat lint mocha');
     grunt.loadNpmTasks('grunt-mocha');
 };
