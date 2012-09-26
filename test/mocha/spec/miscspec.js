@@ -8,8 +8,9 @@ describe('Miscelaneous utility functions', function(){
 				bar: 'test'
 			};
 			var inverted = invert(obj);
-			expect(inverted.test).toBe('bar');
-			expect(inverted['true']).toBe('boolean');
+			inverted.should.contain.keys('lorem ipsum', 'true', 'test');
+			inverted.test.should.equal('bar');
+			inverted['true'].should.equal('boolean');
 		});
 	});
 
@@ -21,10 +22,10 @@ describe('Miscelaneous utility functions', function(){
 				c: 'baz'
 			};
 			var arr = arrayOfKeys(obj);
-			expect(arr.length).toBe(3);
-			expect(arr[0]).toBe('a');
-			expect(arr[2]).toBe('c');
-			expect(arr[89]).toBeUndefined();
+			arr.length.should.equal(3);
+			arr[0].should.equal('a');
+			arr[2].should.equal('c');
+			should.not.exist(arr[89]);
 		});
 	});
 
@@ -36,19 +37,19 @@ describe('Miscelaneous utility functions', function(){
 		});
 
 		it('should return a non-empty string', function(){
-			expect(replacement).toBeDefined();
-			expect(typeof replacement).toBe('string');
-			expect(replacement.length).toBeGreaterThan(0);
+			replacement.should.not.equal(undefined);
+			replacement.should.be.a('string');
+			replacement.should.have.length.above(0);
 		});
 
 		it('should return a string of html that can be parsed by jQuery', function(){
-			expect($.parseHTML(replacement)).not.toBe(null);
+			$.parseHTML(replacement).should.not.equal(null);
 		});
 
 		it('should have a span tag as the root element with a class of "converted-value"', function(){
 			var elem = $(replacement);
-			expect(elem[0].nodeName).toBe('SPAN');
-			expect(elem.hasClass('converted-value')).toBe(true);
+			elem[0].nodeName.should.equal('SPAN');
+			elem.hasClass('converted-value').should.equal(true);
 		});
 	});
 
@@ -57,7 +58,7 @@ describe('Miscelaneous utility functions', function(){
 			var original = $('body').html();
 			convert('body');
 			restore('body');
-			expect($('body').html()).toBe(original);
+			$('body').html().should.equal(original);
 		});
 	});
 });

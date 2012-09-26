@@ -1,0 +1,43 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Mocha Spec Runner</title>
+    <link rel="stylesheet" href="lib/mocha/mocha.css">
+</head>
+<body>
+    <div id="mocha"></div>
+    <script src="lib/mocha/mocha.js"></script>
+    <script>mocha.setup('bdd');</script>
+
+    <!-- assertion framework -->
+    <script src="lib/chai.js"></script>
+
+    <script>
+        expect = chai.expect;
+        var should = chai.should();
+    </script>
+
+    <!-- Libraries used by the extension -->
+    <script src="../../extension/lib/jquery.js"></script>
+    <script src="../../extension/lib/accounting.js"></script>
+    <script src="../../extension/lib/money.js"></script>
+    <script src="../../extension/lib/moment.js"></script>
+
+    <!-- Shared code used by the extension -->
+    <script src="../../extension/shared.js"></script>
+
+    <!-- Extension code, with helpers to generate mock data for testing with -->
+    <script src="beforehelper.js"></script>
+    <script src="../../extension/localisr.js"></script>
+    <script src="afterhelper.js"></script>
+
+    <!-- Spec files -->
+    <script src="spec/miscspec.js"></script>
+    <script src="spec/timespec.js"></script>
+    <script src="spec/pricespec.js"></script>
+
+    <!-- Trigger the Mocha runner -->
+    <script src="runner/mocha.js"></script>
+</body>
+</html>

@@ -22,6 +22,9 @@ module.exports = function(grunt) {
                 errorReporting: true
             }
         },
+        mocha: {
+            index: ['test/mocha/index.html']
+        },
         concat: {
             dist: {
                 src: [
@@ -74,4 +77,5 @@ module.exports = function(grunt) {
     // Default task.
     grunt.registerTask('default', 'concat lint jasmine');
     grunt.loadNpmTasks('grunt-jasmine-task');
+    grunt.loadNpmTasks('grunt-mocha');
 };

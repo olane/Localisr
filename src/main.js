@@ -65,15 +65,18 @@ var convert = function(element){
 			var oldText = text;
 
 			for(var i = 0; i < 2; i++){
-				var matcher = [r.regexp.price.matcher, r.regexp.time.matcher][i];
+				var matchers = [r.regexp.price.matchers, [r.regexp.time.matcher]][i];
+				for(var j = 0; j < matchers.length; j++){
+					var matcher = matchers[j];
+					// Get an array of every substring in the current text node that is a valid price or time
+					var matches = text.match(matcher);
 
-				// Get an array of every substring in the current text node that is a valid price or time
-				var matches = text.match(matcher);
-
-				// If there are any matches
-				if(matches){
-					text = converters[i](text, matches);
+					// If there are any matches
+					if(matches){
+						text = converters[i](text, matches);
+					}
 				}
+
 			}
 
 			// If any replacements have been made, replace the text node with a span element containing the converted text

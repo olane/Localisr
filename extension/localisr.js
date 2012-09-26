@@ -34,6 +34,13 @@ var invert = function(obj){
 	return new_obj;
 };
 
+// Arguments:
+//   - array: An array of strings to match
+// Returns: A string that can be use to construct a RegExp that matches exactly one of the items in `array`
+var matchOneRegex = function(array){
+	return '(' + array.join('|') + '){1}';
+};
+
 // The CSS styles for the boxes that show the original value on mouseover
 var hoverStyle = {
 	position: 'absolute',
@@ -159,11 +166,21 @@ var setupCurrencies = function(acronyms){
 	}
 
 	r.string.price.price = "[0-9]+\\.?([0-9]{2})?";
-	r.string.price.currencies = "(" + currencies.join('|') + "){1}";
-	r.string.price.matcher = r.string.price.currencies + "\\s*" + r.string.price.price;
+
+	r.string.price.currencies = matchOneRegex(currencies);
+	r.string.price.symbols = matchOneRegex(symbols);
+	r.string.price.acronyms = matchOneRegex(acronyms);
+
+	r.string.price.matchers = [
+		r.string.price.currencies + "\\s*" + r.string.price.price,
+		r.string.price.symbols + "\\s*" + r.string.price.price + "\\s*" + r.string.price.acronyms
+	];
 
 	// Regex used for determining whether there is a price in a string
-	r.regexp.price.matcher = new RegExp(r.string.price.matcher, 'gi');
+	r.regexp.price.matchers = [
+		new RegExp(r.string.price.matchers[0], 'gi'),
+		new RegExp(r.string.price.matchers[1], 'gi')
+	];
 	r.regexp.price.currencies = new RegExp(r.string.price.currencies, 'gi');
 };
 
@@ -268,15 +285,18 @@ var convert = function(element){
 			var oldText = text;
 
 			for(var i = 0; i < 2; i++){
-				var matcher = [r.regexp.price.matcher, r.regexp.time.matcher][i];
+				var matchers = [r.regexp.price.matchers, [r.regexp.time.matcher]][i];
+				for(var j = 0; j < matchers.length; j++){
+					var matcher = matchers[j];
+					// Get an array of every substring in the current text node that is a valid price or time
+					var matches = text.match(matcher);
 
-				// Get an array of every substring in the current text node that is a valid price or time
-				var matches = text.match(matcher);
-
-				// If there are any matches
-				if(matches){
-					text = converters[i](text, matches);
+					// If there are any matches
+					if(matches){
+						text = converters[i](text, matches);
+					}
 				}
+
 			}
 
 			// If any replacements have been made, replace the text node with a span element containing the converted text

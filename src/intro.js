@@ -34,6 +34,13 @@ var invert = function(obj){
 	return new_obj;
 };
 
+// Arguments:
+//   - array: An array of strings to match
+// Returns: A string that can be use to construct a RegExp that matches exactly one of the items in `array`
+var matchOneRegex = function(array){
+	return '(' + array.join('|') + '){1}';
+};
+
 // The CSS styles for the boxes that show the original value on mouseover
 var hoverStyle = {
 	position: 'absolute',
